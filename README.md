@@ -1,12 +1,7 @@
-- 👋 Hi, I’m @Stormysmurf
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
-
-<!---
-Stormysmurf/Stormysmurf is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+👋 Hi, I’m @Stormysmurf  
+👀 I’m interested in open-source projects, backend development, and AI tools  
+🌱 I’m currently learning Java, Python, and how to build Android apps  
+💞️ I’m looking to collaborate on beginner-friendly and impactful projects  
+📫 How to reach me: stormysmurf@gmail.com  
+😄 Pronouns: He/Him  
+⚡ Fun fact: I started coding on my phone using Termux!
