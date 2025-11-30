@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -16,7 +17,7 @@
             <div class="container">
                 <div class="nav-content">
                     <div class="logo">
-                        <h1>🦁 JamboGuide</h1>
+                        <h1><i class="fas fa-paw"></i> JamboGuide</h1>
                         <p class="tagline">Discover Kenya</p>
                     </div>
                     <ul class="nav-links">
@@ -25,6 +26,9 @@
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
+                    <div class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -32,26 +36,29 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-overlay"></div>
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+            <div class="hero-pattern"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <h2 class="hero-title">Explore Kenya's Hidden Gems</h2>
                 <p class="hero-subtitle">From pristine beaches to majestic mountains, discover experiences that match your wanderlust</p>
-                
+
                 <!-- Search Bar -->
                 <div class="search-container">
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        class="search-input" 
-                        placeholder="Search for waterfalls, mountains, beaches, wildlife..."
-                        autocomplete="off"
-                    >
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="search-input" 
+                            placeholder="Search for waterfalls, mountains, beaches, wildlife..."
+                            autocomplete="off"
+                        >
+                    </div>
                     <button class="search-btn" id="searchBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.35-4.35"></path>
-                        </svg>
+                        <i class="fas fa-search"></i>
                         Search
                     </button>
                 </div>
@@ -59,11 +66,11 @@
                 <!-- Quick Filters -->
                 <div class="quick-filters">
                     <button class="filter-chip" data-filter="all">All</button>
-                    <button class="filter-chip" data-filter="beach">🏖️ Beaches</button>
-                    <button class="filter-chip" data-filter="mountain">⛰️ Mountains</button>
-                    <button class="filter-chip" data-filter="waterfall">💧 Waterfalls</button>
-                    <button class="filter-chip" data-filter="wildlife">🦒 Wildlife</button>
-                    <button class="filter-chip" data-filter="cultural">🎭 Cultural</button>
+                    <button class="filter-chip" data-filter="beach"><i class="fas fa-umbrella-beach"></i> Beaches</button>
+                    <button class="filter-chip" data-filter="mountain"><i class="fas fa-mountain"></i> Mountains</button>
+                    <button class="filter-chip" data-filter="waterfall"><i class="fas fa-water"></i> Waterfalls</button>
+                    <button class="filter-chip" data-filter="wildlife"><i class="fas fa-paw"></i> Wildlife</button>
+                    <button class="filter-chip" data-filter="cultural"><i class="fas fa-landmark"></i> Cultural</button>
                 </div>
             </div>
         </div>
@@ -85,10 +92,7 @@
 
             <!-- Empty State -->
             <div class="empty-state" id="emptyState" style="display: none;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                </svg>
+                <i class="fas fa-search fa-3x"></i>
                 <h3>No destinations found</h3>
                 <p>Try adjusting your search or filters</p>
             </div>
@@ -101,17 +105,17 @@
             <h2>Why Choose JamboGuide?</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
+                    <div class="feature-icon"><i class="fas fa-search"></i></div>
                     <h3>Easy Discovery</h3>
                     <p>Find attractions by keywords that match your interests</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📸</div>
+                    <div class="feature-icon"><i class="fas fa-camera"></i></div>
                     <h3>Rich Content</h3>
                     <p>Detailed descriptions and stunning photos of each location</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🗺️</div>
+                    <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
                     <h3>Plan Your Trip</h3>
                     <p>Create personalized itineraries for unforgettable adventures</p>
                 </div>
@@ -124,8 +128,14 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>🦁 JamboGuide</h3>
+                    <h3><i class="fas fa-paw"></i> JamboGuide</h3>
                     <p>Your gateway to Kenya's most beautiful destinations</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -137,8 +147,8 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>Email: info@jamboguide.com</p>
-                    <p>Phone: +254 XXX XXX XXX</p>
+                    <p><i class="fas fa-envelope"></i> info@jamboguide.com</p>
+                    <p><i class="fas fa-phone"></i> +254 XXX XXX XXX</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -151,7 +161,7 @@
     <div class="modal" id="destinationModal">
         <div class="modal-overlay" id="modalOverlay"></div>
         <div class="modal-content">
-            <button class="modal-close" id="modalClose">×</button>
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
             <div id="modalBody">
                 <!-- Modal content will be dynamically inserted -->
             </div>
