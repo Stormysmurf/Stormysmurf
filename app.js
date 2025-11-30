@@ -13,6 +13,8 @@ const modal = document.getElementById('destinationModal');
 const modalOverlay = document.getElementById('modalOverlay');
 const modalClose = document.getElementById('modalClose');
 const modalBody = document.getElementById('modalBody');
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinks = document.querySelector('.nav-links');
 
 // Initialize the application
 function init() {
@@ -48,6 +50,9 @@ function setupEventListeners() {
     modalClose.addEventListener('click', closeModal);
     modalOverlay.addEventListener('click', closeModal);
 
+    // Mobile menu
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
     // Smooth scroll for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -55,9 +60,16 @@ function setupEventListeners() {
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth' });
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
             }
         });
     });
+}
+
+// Toggle mobile menu
+function toggleMobileMenu() {
+    navLinks.classList.toggle('active');
 }
 
 // Handle search
@@ -85,7 +97,7 @@ function filterAndRender() {
                 ${dest.description} 
                 ${dest.tags.join(' ')}
             `.toLowerCase();
-            
+
             return searchableText.includes(currentSearchQuery);
         });
     }
@@ -138,7 +150,7 @@ function createDestinationCard(dest) {
             <div class="card-header">
                 <div>
                     <h3 class="card-title">${dest.name}</h3>
-                    <p class="card-location">📍 ${dest.location}</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i> ${dest.location}</p>
                 </div>
                 <span class="card-category" style="background: ${categoryColor}">
                     ${dest.category.toUpperCase()}
@@ -152,7 +164,7 @@ function createDestinationCard(dest) {
                     ).join('')}
                 </div>
                 <button class="card-btn" onclick="event.stopPropagation(); openModal(${dest.id})">
-                    View Details
+                    <i class="fas fa-eye"></i> View Details
                 </button>
             </div>
         </div>
@@ -165,7 +177,7 @@ function createDestinationCard(dest) {
 function openModal(destId) {
     const dest = typeof destId === 'object' ? destId : 
                  window.destinationsData.find(d => d.id === destId);
-    
+
     if (!dest) return;
 
     const categoryColors = {
@@ -186,7 +198,7 @@ function openModal(destId) {
                 <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
                     <div>
                         <h2 class="modal-title">${dest.name}</h2>
-                        <p class="modal-location">📍 ${dest.location}</p>
+                        <p class="modal-location"><i class="fas fa-map-marker-alt"></i> ${dest.location}</p>
                     </div>
                     <span class="card-category" style="background: ${categoryColor}">
                         ${dest.category.toUpperCase()}
@@ -198,24 +210,24 @@ function openModal(destId) {
             
             <div class="modal-info">
                 <div class="info-item">
-                    <h4>🌟 Best Time to Visit</h4>
+                    <h4><i class="fas fa-calendar-alt"></i> Best Time to Visit</h4>
                     <p>${dest.bestTime}</p>
                 </div>
                 <div class="info-item">
-                    <h4>⏱️ Recommended Duration</h4>
+                    <h4><i class="fas fa-clock"></i> Recommended Duration</h4>
                     <p>${dest.duration}</p>
                 </div>
             </div>
             
             <div class="modal-info">
                 <div class="info-item">
-                    <h4>🎯 Activities</h4>
+                    <h4><i class="fas fa-hiking"></i> Activities</h4>
                     <p>${dest.activities.join(', ')}</p>
                 </div>
             </div>
             
             <div style="margin-top: 2rem;">
-                <h4 style="margin-bottom: 1rem; color: var(--primary-color);">🏷️ Tags</h4>
+                <h4 style="margin-bottom: 1rem; color: var(--primary-color);"><i class="fas fa-tags"></i> Tags</h4>
                 <div class="card-tags">
                     ${dest.tags.map(tag => 
                         `<span class="tag">${tag}</span>`
@@ -226,7 +238,7 @@ function openModal(destId) {
             <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--gray-light);">
                 <button class="card-btn" style="width: 100%; padding: 1rem; font-size: 1.1rem;" 
                         onclick="addToItinerary('${dest.name}')">
-                    ➕ Add to My Itinerary
+                    <i class="fas fa-plus"></i> Add to My Itinerary
                 </button>
             </div>
         </div>
