@@ -1,0 +1,162 @@
+// Sample destinations data - expand this with real data
+const destinations = [
+    {
+        id: 1,
+        name: "Diani Beach",
+        location: "South Coast, Mombasa",
+        category: "beach",
+        image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800",
+        description: "Diani Beach is a pristine stretch of white sandy beach on the Indian Ocean coast. Known for its crystal-clear turquoise waters and palm-fringed shores, it's perfect for swimming, snorkeling, and water sports.",
+        fullDescription: "Diani Beach, located 30km south of Mombasa, is one of Kenya's most beautiful coastal destinations. This 17km stretch of pristine white sand and crystal-clear waters offers the perfect tropical paradise. The beach is lined with luxury resorts, boutique hotels, and beachfront restaurants. Visitors can enjoy kite surfing, diving, snorkeling, and dolphin watching. The coral reefs offshore are home to diverse marine life including sea turtles and colorful tropical fish.",
+        tags: ["swimming", "water sports", "relaxation"],
+        bestTime: "June to March",
+        activities: ["Snorkeling", "Kite surfing", "Dolphin watching", "Beach relaxation"],
+        duration: "1-3 days"
+    },
+    {
+        id: 2,
+        name: "Mount Kenya",
+        location: "Central Kenya",
+        category: "mountain",
+        image: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800",
+        description: "Africa's second-highest mountain, Mount Kenya offers spectacular hiking trails through diverse ecosystems, from bamboo forests to alpine meadows and glaciers.",
+        fullDescription: "Mount Kenya is Africa's second highest peak at 5,199 meters and a UNESCO World Heritage Site. The mountain offers some of the most spectacular mountain scenery in Africa. The trek takes you through multiple ecological zones: cultivated farmlands, bamboo forests, giant heather and moorland, and finally the alpine desert zone with its unique vegetation. The mountain has three main peaks: Batian, Nelion, and Point Lenana. While Batian and Nelion require technical climbing, Point Lenana can be reached by trekkers.",
+        tags: ["hiking", "adventure", "nature"],
+        bestTime: "January-February, June-October",
+        activities: ["Mountain trekking", "Rock climbing", "Wildlife viewing", "Photography"],
+        duration: "4-7 days"
+    },
+    {
+        id: 3,
+        name: "Maasai Mara",
+        location: "Narok County",
+        category: "wildlife",
+        image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800",
+        description: "World-renowned wildlife reserve famous for the Great Migration, Big Five sightings, and endless savannah plains dotted with acacia trees.",
+        fullDescription: "The Maasai Mara National Reserve is Kenya's most famous wildlife sanctuary. Covering 1,510 square kilometers of pristine wilderness, the reserve is home to an incredible diversity of wildlife including lions, leopards, elephants, rhinos, and buffalo. The annual wildebeest migration between July and October is one of nature's most spectacular events, with over 1.5 million wildebeest, zebras, and gazelles crossing the Mara River. The reserve also offers hot air balloon safaris, cultural visits to Maasai villages, and luxury tented camps.",
+        tags: ["safari", "big five", "migration"],
+        bestTime: "July to October (migration), January-February",
+        activities: ["Game drives", "Hot air balloon safari", "Cultural visits", "Bird watching"],
+        duration: "3-5 days"
+    },
+    {
+        id: 4,
+        name: "Fourteen Falls",
+        location: "Thika, Kiambu County",
+        category: "waterfall",
+        image: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800",
+        description: "A series of fourteen cascading waterfalls on the Athi River, creating a spectacular natural display surrounded by lush vegetation.",
+        fullDescription: "Fourteen Falls, also known as Thika Falls, is located along the Athi River in Thika. The falls drop about 27 meters and are named for the fourteen separate streams that cascade down the rocky face. The site offers stunning views, picnic spots, and opportunities for photography. Local guides are available to take visitors on trails around the falls. The surrounding area is rich in birdlife and vegetation. It's a popular day trip destination from Nairobi, offering a peaceful escape into nature.",
+        tags: ["nature", "photography", "picnic"],
+        bestTime: "April-June (after rains)",
+        activities: ["Photography", "Picnicking", "Nature walks", "Bird watching"],
+        duration: "Half day to full day"
+    },
+    {
+        id: 5,
+        name: "Lamu Old Town",
+        location: "Lamu Island",
+        category: "cultural",
+        image: "https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?w=800",
+        description: "UNESCO World Heritage Site showcasing Swahili architecture, narrow streets, and a rich cultural heritage dating back to the 12th century.",
+        fullDescription: "Lamu Old Town is Kenya's oldest and best-preserved Swahili settlement, founded in the 12th century. This UNESCO World Heritage Site features winding narrow streets, ornate wooden doors, and stone buildings that reflect centuries of Arab, Persian, Indian, and European influences. The island has no motorized vehicles - only donkeys and dhows (traditional sailing boats). Visitors can explore ancient mosques, museums, and art galleries. The annual Lamu Cultural Festival celebrates traditional dance, poetry, and dhow races. The laid-back atmosphere and pristine beaches make it perfect for cultural immersion and relaxation.",
+        tags: ["history", "architecture", "culture"],
+        bestTime: "July-March",
+        activities: ["Cultural tours", "Dhow sailing", "Historical site visits", "Beach relaxation"],
+        duration: "2-4 days"
+    },
+    {
+        id: 6,
+        name: "Lake Nakuru",
+        location: "Nakuru County",
+        category: "wildlife",
+        image: "https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=800",
+        description: "Alkaline lake famous for flamingos, rhino sanctuary, and diverse birdlife in the Great Rift Valley.",
+        fullDescription: "Lake Nakuru National Park is one of Kenya's premier wildlife destinations. The alkaline lake was once famous for millions of flamingos that created a pink blanket across the water. While flamingo numbers fluctuate, the park remains a haven for over 450 bird species. It's also a rhino sanctuary hosting both black and white rhinos. Other wildlife includes Rothschild's giraffes, lions, leopards, buffalo, and various antelope species. The park offers scenic viewpoints including Baboon Cliff and Lion Hill. Recent years have seen the lake expand significantly, creating new habitats and changing the ecosystem.",
+        tags: ["birds", "rhino", "scenic"],
+        bestTime: "June-March",
+        activities: ["Game drives", "Bird watching", "Photography", "Rhino tracking"],
+        duration: "1-2 days"
+    },
+    {
+        id: 7,
+        name: "Watamu Beach",
+        location: "Kilifi County",
+        category: "beach",
+        image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800",
+        description: "Protected marine park with coral reefs, sea turtles, and pristine beaches ideal for snorkeling and diving.",
+        fullDescription: "Watamu is a small coastal town known for its stunning beaches and marine biodiversity. The Watamu Marine National Park and Reserve protects coral reefs, seagrass beds, and mangrove forests. It's one of the best places in Kenya for snorkeling and diving, with visibility often exceeding 20 meters. The area is a nesting site for endangered sea turtles, and the Local Ocean Trust runs conservation programs. Visitors can explore the mysterious Gede Ruins, take sunset dhow cruises, or enjoy fresh seafood at beachfront restaurants. The Bio-Ken Snake Farm and Arabuko Sokoke Forest are nearby attractions.",
+        tags: ["marine life", "snorkeling", "turtles"],
+        bestTime: "October-March",
+        activities: ["Snorkeling", "Diving", "Turtle watching", "Beach walks"],
+        duration: "2-4 days"
+    },
+    {
+        id: 8,
+        name: "Hell's Gate National Park",
+        location: "Naivasha, Nakuru County",
+        category: "wildlife",
+        image: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800",
+        description: "Unique park where you can walk, cycle, and rock climb among wildlife, featuring dramatic cliffs and geothermal features.",
+        fullDescription: "Hell's Gate National Park is one of the few parks in Kenya where you can walk and cycle alongside wildlife. Named after a narrow break in the cliffs, the park features spectacular scenery including towering cliffs, gorges, and volcanic rock formations. The park inspired the landscape in Disney's 'The Lion King'. Wildlife includes zebras, giraffes, buffaloes, and various antelope species. The dramatic gorges can be explored on foot with a guide. The park also contains a geothermal power station harnessing underground steam. Rock climbing is popular on Fischer's Tower. Nearby Lake Naivasha offers boat rides and birdwatching.",
+        tags: ["cycling", "hiking", "adventure"],
+        bestTime: "Year-round",
+        activities: ["Cycling", "Rock climbing", "Walking safaris", "Gorge exploration"],
+        duration: "1-2 days"
+    },
+    {
+        id: 9,
+        name: "Thomson's Falls",
+        location: "Nyahururu, Laikipia County",
+        category: "waterfall",
+        image: "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=800",
+        description: "73-meter scenic waterfall named after explorer Joseph Thomson, surrounded by lush green vegetation and hiking trails.",
+        fullDescription: "Thomson's Falls is a magnificent 73-meter waterfall located in the town of Nyahururu, Kenya's highest town at 2,360 meters above sea level. Named after Scottish explorer Joseph Thomson who was the first European to walk from Mombasa to Lake Victoria, the falls plunge into a forested gorge creating a spectacular sight. A path leads down to the bottom of the falls where visitors can feel the spray and take photos. The surrounding area offers nature walks, horseback riding, and views over the Ewaso Narok River. The cool highland climate makes it a refreshing escape. Local craftsmen sell souvenirs near the viewing platform.",
+        tags: ["nature", "hiking", "photography"],
+        bestTime: "Year-round (best after rains)",
+        activities: ["Hiking", "Photography", "Nature walks", "Horseback riding"],
+        duration: "Half day"
+    },
+    {
+        id: 10,
+        name: "Fort Jesus",
+        location: "Mombasa",
+        category: "cultural",
+        image: "https://images.unsplash.com/photo-1563789031959-4c02bcb41319?w=800",
+        description: "16th-century Portuguese fort, UNESCO World Heritage Site with museums showcasing Swahili coastal history.",
+        fullDescription: "Fort Jesus is a Portuguese fort built in 1593 to protect the port of Mombasa. This UNESCO World Heritage Site is one of the finest examples of 16th-century Portuguese military architecture. The fort changed hands between the Portuguese and Omani Arabs multiple times over the centuries. Today it houses a museum with artifacts including pottery, beads, and Chinese porcelain that illustrate the diverse cultural influences on Kenya's coast. The fort's walls, bastions, and passageways can be explored. Archaeological excavations have revealed layers of Swahili, Portuguese, Arab, and British occupation. The site offers stunning views of the Old Port of Mombasa.",
+        tags: ["history", "museum", "architecture"],
+        bestTime: "Year-round",
+        activities: ["Historical tours", "Museum visits", "Photography", "Cultural learning"],
+        duration: "Half day"
+    },
+    {
+        id: 11,
+        name: "Amboseli National Park",
+        location: "Kajiado County",
+        category: "wildlife",
+        image: "https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=800",
+        description: "Famous for large elephant herds and spectacular views of Mount Kilimanjaro, Africa's highest peak.",
+        fullDescription: "Amboseli National Park offers some of the best wildlife viewing in Africa with a backdrop of Mount Kilimanjaro. The park is famous for its large elephant herds - you can get very close to these gentle giants. The permanent swamps fed by Kilimanjaro's melting snows attract diverse wildlife including lions, cheetahs, buffalo, giraffes, and zebras. The park features five distinct wildlife habitats ranging from dried-up Lake Amboseli, wetlands, savannah, and woodlands. Observation Hill offers panoramic views of the park. Cultural visits to Maasai villages provide insight into traditional pastoralist lifestyles. Dawn and dusk offer the clearest views of Kilimanjaro.",
+        tags: ["elephants", "kilimanjaro", "safari"],
+        bestTime: "June-October, January-February",
+        activities: ["Game drives", "Elephant watching", "Bird watching", "Cultural visits"],
+        duration: "2-3 days"
+    },
+    {
+        id: 12,
+        name: "Karura Forest",
+        location: "Nairobi",
+        category: "nature",
+        image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800",
+        description: "Urban forest sanctuary in Nairobi with waterfalls, caves, and over 50km of hiking and cycling trails.",
+        fullDescription: "Karura Forest is a 1,041-hectare urban forest providing a green oasis in the heart of Nairobi. The forest features over 50 kilometers of walking, running, and cycling trails through pristine indigenous forest. Highlights include scenic waterfalls, lily-covered ponds, and caves that were used by Mau Mau freedom fighters. The forest is home to over 200 bird species, colobus monkeys, bushbucks, and duikers. It's a popular recreation spot for Nairobi residents offering activities like jogging, cycling, picnicking, and nature walks. The forest also plays a crucial role in carbon sequestration and watershed protection. Entry is free and the forest is well-maintained with security patrols.",
+        tags: ["forest", "trails", "urban nature"],
+        bestTime: "Year-round",
+        activities: ["Hiking", "Cycling", "Bird watching", "Picnicking"],
+        duration: "Half day"
+    }
+];
+
+// Make destinations available globally
+window.destinationsData = destinations;
