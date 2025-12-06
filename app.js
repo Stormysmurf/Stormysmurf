@@ -165,7 +165,7 @@ function initializeTripPlanningForm() {
             submitBtn.disabled = true;
             
             // Send email using EmailJS
-            emailjs.sendForm('service_2xbjyf7', 'template_rf6952', this)
+            emailjs.sendForm('service_2xbjyf7', 'ID:template_rlfd9s2', this)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     alert('✅ Thank you! Your trip request has been sent. Check your email for confirmation and expect personalized recommendations within 24 hours.');
