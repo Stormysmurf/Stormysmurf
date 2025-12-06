@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Trip - Visit Kenya</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        .plan-section {
+            padding: 60px 0;
+        }
+        
+        .plan-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+        
+        .plan-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 15px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .plan-info {
+            padding: 40px;
+        }
+        
+        .info-box {
+            background: var(--bg-light);
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .info-box h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+        }
+        
+        .info-box li {
+            margin-bottom: 8px;
+            color: var(--text-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .plan-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .plan-form {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container-fluid">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <a href="#" class="top-link">Travel Trade</a>
+                    <a href="#" class="top-link">Media</a>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" class="top-link">Newsletter</a>
+                    <select class="language-select">
+                        <option>English</option>
+                        <option>Swahili</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="main-header">
+        <div class="container-fluid">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">🇰🇪</span>
+                    <div class="logo-text">
+                        <span class="logo-title">Visit Kenya</span>
+                        <span class="logo-subtitle">Magical Kenya</span>
+                    </div>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="destinations.html" class="nav-link">Destinations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="things-to-do.html" class="nav-link">Things to do</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="accommodation.html" class="nav-link">Accommodation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="plan.html" class="nav-link active">Plan your trip</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Stories</a>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="search-toggle" id="searchToggle">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Plan your trip</span>
+            </nav>
+            <h1 class="page-title">Plan Your Kenya Adventure</h1>
+            <p class="page-subtitle">Let us help you create the perfect itinerary for your Kenyan journey</p>
+        </div>
+    </section>
+
+    <!-- Plan Section -->
+    <section class="plan-section">
+        <div class="container">
+            <div class="plan-grid">
+                <!-- Planning Form -->
+                <div>
+                    <h2 style="margin-bottom: 24px;">Tell us about your trip</h2>
+                    <form class="plan-form" id="planningForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dates">Preferred Travel Dates</label>
+                            <input type="text" id="dates" name="dates" placeholder="e.g., July 2025">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="duration">Trip Duration</label>
+                            <select id="duration" name="duration">
+                                <option>Select duration</option>
+                                <option>3-5 days</option>
+                                <option>6-10 days</option>
+                                <option>11-14 days</option>
+                                <option>15+ days</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interests">Interests</label>
+                            <select id="interests" name="interests">
+                                <option>Select your main interest</option>
+                                <option>Wildlife Safari</option>
+                                <option>Beach Holiday</option>
+                                <option>Cultural Experience</option>
+                                <option>Adventure Activities</option>
+                                <option>Mix of Everything</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="travelers">Number of Travelers</label>
+                            <input type="number" id="travelers" name="travelers" min="1" value="2">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Additional Information</label>
+                            <textarea id="message" name="message" placeholder="Tell us about any specific requirements or questions..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Get Trip Recommendations</button>
+                    </form>
+                </div>
+                
+                <!-- Travel Information -->
+                <div class="plan-info">
+                    <h2 style="margin-bottom: 24px;">Essential Travel Information</h2>
+                    
+                    <div class="info-box">
+                        <h3>Visa Requirements</h3>
+                        <p>Most visitors can obtain an e-Visa online before traveling to Kenya. The process typically takes 2-7 business days.</p>
+                        <ul>
+                            <li>Apply online at www.ecitizen.go.ke</li>
+                            <li>Single entry visa: $51 USD</li>
+                            <li>Transit visa: $21 USD</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3>Best Time to Visit</h3>
+                        <p>Kenya can be visited year-round, but timing depends on your interests:</p>
+                        <ul>
+                            <li><strong>July-October:</strong> Great Migration in Maasai Mara</li>
+                            <li><strong>January-February:</strong> Dry season, excellent wildlife viewing</li>
+                            <li><strong>December-March:</strong> Best beach weather</li>
+                            <li><strong>June-October:</strong> Coolest months, ideal for trekking</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3>Health & Safety</h3>
+                        <ul>
+                            <li>Recommended vaccinations: Yellow fever, Hepatitis A, Typhoid</li>
+                            <li>Malaria prophylaxis advised for most regions</li>
+                            <li>Travel insurance strongly recommended</li>
+                            <li>Tap water not safe to drink - use bottled water</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3>Currency & Budget</h3>
+                        <ul>
+                            <li>Currency: Kenyan Shilling (KES)</li>
+                            <li>USD widely accepted in tourist areas</li>
+                            <li>Credit cards accepted in major hotels and restaurants</li>
+                            <li>Budget: $50-300+ per day depending on accommodation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="featured-section" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header centered">
+                <h2 class="section-title">Helpful Resources</h2>
+            </div>
+            
+            <div class="featured-grid">
+                <article class="destination-card">
+                    <div class="card-body">
+                        <h3 class="card-title">🗺️ Sample Itineraries</h3>
+                        <p class="card-description">Browse our curated itineraries for different interests and durations to inspire your trip.</p>
+                        <a href="#" class="btn btn-primary" style="margin-top: 16px;">View itineraries</a>
+                    </div>
+                </article>
+                
+                <article class="destination-card">
+                    <div class="card-body">
+                        <h3 class="card-title">📝 Travel Tips</h3>
+                        <p class="card-description">Essential tips on packing, etiquette, safety, and making the most of your Kenyan adventure.</p>
+                        <a href="#" class="btn btn-primary" style="margin-top: 16px;">Read tips</a>
+                    </div>
+                </article>
+                
+                <article class="destination-card">
+                    <div class="card-body">
+                        <h3 class="card-title">🏨 Accommodation Guide</h3>
+                        <p class="card-description">From luxury lodges to budget camps, find the perfect place to stay during your visit.</p>
+                        <a href="accommodation.html" class="btn btn-primary" style="margin-top: 16px;">Browse options</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Nairobi</a></li>
+                        <li><a href="#">Mombasa</a></li>
+                        <li><a href="#">Maasai Mara</a></li>
+                        <li><a href="#">Lake Nakuru</a></li>
+                        <li><a href="#">Amboseli</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Things to do</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Safari tours</a></li>
+                        <li><a href="#">Beach activities</a></li>
+                        <li><a href="#">Cultural experiences</a></li>
+                        <li><a href="#">Adventure sports</a></li>
+                        <li><a href="#">Wildlife viewing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Plan your trip</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Getting here</a></li>
+                        <li><a href="#">Getting around</a></li>
+                        <li><a href="#">Accommodation</a></li>
+                        <li><a href="#">Travel tips</a></li>
+                        <li><a href="#">Visa information</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Visit Kenya</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Press & media</a></li>
+                        <li><a href="#">Trade</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">YouTube</a>
+                </div>
+                <div class="footer-legal">
+                    <p>&copy; 2024 Visit Kenya. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Accessibility</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Form submission handler
+        document.getElementById('planningForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! Our travel experts will contact you within 24 hours with personalized recommendations.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
