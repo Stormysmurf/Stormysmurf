@@ -387,37 +387,31 @@
 
     <script src="app.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
-        // Initialize EmailJS
-        emailjs.init("kWwPttIOCMN0lL616");
-        
-        // Form handler
-        document.getElementById('planningForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            console.log('Starting EmailJS send...');
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            emailjs.sendForm('service_2xbjyf7', 'template_rf6952', this)
-                .then(function(response) {
-                    console.log('SUCCESS!', response);
-                    alert('✅ Email sent successfully!');
-                    document.getElementById('planningForm').reset();
-                }, function(error) {
-                    console.error('FAILED:', error);
-                    alert('❌ Error: ' + error.text);
-                })
-                .finally(function() {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                });
+    <!-- Add this RIGHT BEFORE </body> in plan.html -->
+<script>
+    console.log('Debug: Form exists?', !!document.getElementById('planningForm'));
+    
+    document.getElementById('planningForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log('Form submitted!');
+        console.log('Form data:', {
+            name: this.from_name?.value,
+            email: this.reply_to?.value,
+            dates: this.travel_dates?.value,
+            duration: this.trip_duration?.value,
+            interest: this.main_interest?.value,
+            travelers: this.number_of_travelers?.value,
+            message: this.message?.value
         });
-    </script>
+        
+        // Test if EmailJS is loaded
+        console.log('EmailJS loaded?', typeof emailjs !== 'undefined');
+        if (typeof emailjs !== 'undefined') {
+            console.log('EmailJS init status:', emailjs.initStatus);
+        }
+    });
+</script>
+
 </body>
 </html>
 </body>
