@@ -164,36 +164,7 @@ function initializeTripPlanningForm() {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             
-            // Send email using EmailJS
-            emailjs.sendForm('service_2xbjyf7', 'ID:template_rlfd9s2', this)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    alert('✅ Thank you! Your trip request has been sent. Check your email for confirmation and expect personalized recommendations within 24 hours.');
-                    planningForm.reset();
-                }, function(error) {
-                    console.error('FAILED...', error);
-                    alert('❌ Oops! Failed to send. Please email us directly at: securetechsolutions71@gmail.com');
-                })
-                .finally(function() {
-                    // Restore button
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                });
-        });
-    };
-    
-    // Handle script load error
-    emailjsScript.onerror = function() {
-        console.error('Failed to load EmailJS library');
-        planningForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Service temporarily unavailable. Please email: securetechsolutions71@gmail.com');
-        });
-    };
-    
-    document.head.appendChild(emailjsScript);
-}
-
+          
 // Open destination modal
 function openDestinationModal(id) {
     const destination = destinationsData.find(d => d.id === id);
