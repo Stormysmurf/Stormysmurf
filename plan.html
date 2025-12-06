@@ -172,66 +172,222 @@
         </div>
     </section>
 
-    <!-- Plan Section -->
-    <section class="plan-section">
-        <div class="container">
-            <div class="plan-grid">
-                <!-- Planning Form -->
-                <div>
-                    <h2 style="margin-bottom: 24px;">Tell us about your trip</h2>
-                    <form class="plan-form" id="planningForm">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="from_name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="reply_to" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="dates">Preferred Travel Dates</label>
-                            <input type="text" id="dates" name="travel_dates" placeholder="e.g., July 2025">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="duration">Trip Duration</label>
-                            <select id="duration" name="trip_duration">
-                                <option value="">Select duration</option>
-                                <option value="3-5 days">3-5 days</option>
-                                <option value="6-10 days">6-10 days</option>
-                                <option value="11-14 days">11-14 days</option>
-                                <option value="15+ days">15+ days</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="interests">Interests</label>
-                            <select id="interests" name="main_interest">
-                                <option value="">Select your main interest</option>
-                                <option value="Wildlife Safari">Wildlife Safari</option>
-                                <option value="Beach Holiday">Beach Holiday</option>
-                                <option value="Cultural Experience">Cultural Experience</option>
-                                <option value="Adventure Activities">Adventure Activities</option>
-                                <option value="Mix of Everything">Mix of Everything</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="travelers">Number of Travelers</label>
-                            <input type="number" id="travelers" name="number_of_travelers" min="1" value="2">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Additional Information</label>
-                            <textarea id="message" name="message" placeholder="Tell us about any specific requirements or questions..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Get Trip Recommendations</button>
-                    </form>
+  <!-- Plan Section -->
+<section class="plan-section">
+    <div class="container">
+        <div class="plan-grid">
+            <!-- Planning Form -->
+            <div>
+                <h2 style="margin-bottom: 24px;">Tell us about your trip</h2>
+                <form class="plan-form" id="planningForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="from_name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="reply_to" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dates">Preferred Travel Dates</label>
+                        <input type="text" id="dates" name="travel_dates" placeholder="e.g., July 2025">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="duration">Trip Duration</label>
+                        <select id="duration" name="trip_duration">
+                            <option value="">Select duration</option>
+                            <option value="3-5 days">3-5 days</option>
+                            <option value="6-10 days">6-10 days</option>
+                            <option value="11-14 days">11-14 days</option>
+                            <option value="15+ days">15+ days</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interests">Interests</label>
+                        <select id="interests" name="main_interest">
+                            <option value="">Select your main interest</option>
+                            <option value="Wildlife Safari">Wildlife Safari</option>
+                            <option value="Beach Holiday">Beach Holiday</option>
+                            <option value="Cultural Experience">Cultural Experience</option>
+                            <option value="Adventure Activities">Adventure Activities</option>
+                            <option value="Mix of Everything">Mix of Everything</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="travelers">Number of Travelers</label>
+                        <input type="number" id="travelers" name="number_of_travelers" min="1" value="2">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Additional Information</label>
+                        <textarea id="message" name="message" placeholder="Tell us about any specific requirements or questions..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">
+                        Get Trip Recommendations
+                    </button>
+                    
+                    <div id="formMessage" style="margin-top: 16px; display: none; padding: 12px; border-radius: 4px;"></div>
+                </form>
+            </div>
+            
+            <!-- Travel Information (keep your existing info boxes here) -->
+            <div class="plan-info">
+                <h2 style="margin-bottom: 24px;">Essential Travel Information</h2>
+                
+                <div class="info-box">
+                    <h3>Visa Requirements</h3>
+                    <p>Most visitors can obtain an e-Visa online before traveling to Kenya. The process typically takes 2-7 business days.</p>
+                    <ul>
+                        <li>Apply online at www.ecitizen.go.ke</li>
+                        <li>Single entry visa: $51 USD</li>
+                        <li>Transit visa: $21 USD</li>
+                    </ul>
                 </div>
                 
+                <div class="info-box">
+                    <h3>Best Time to Visit</h3>
+                    <p>Kenya can be visited year-round, but timing depends on your interests:</p>
+                    <ul>
+                        <li><strong>July-October:</strong> Great Migration in Maasai Mara</li>
+                        <li><strong>January-February:</strong> Dry season, excellent wildlife viewing</li>
+                        <li><strong>December-March:</strong> Best beach weather</li>
+                        <li><strong>June-October:</strong> Coolest months, ideal for trekking</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Health & Safety</h3>
+                    <ul>
+                        <li>Recommended vaccinations: Yellow fever, Hepatitis A, Typhoid</li>
+                        <li>Malaria prophylaxis advised for most regions</li>
+                        <li>Travel insurance strongly recommended</li>
+                        <li>Tap water not safe to drink - use bottled water</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Currency & Budget</h3>
+                    <ul>
+                        <li>Currency: Kenyan Shilling (KES)</li>
+                        <li>USD widely accepted in tourist areas</li>
+                        <li>Credit cards accepted in major hotels and restaurants</li>
+                        <li>Budget: $50-300+ per day depending on accommodation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add EmailJS Library and Form Handler -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+    // Initialize EmailJS with YOUR credentials
+    (function() {
+        emailjs.init("kWwPttIOCMN0lL616");
+    })();
+    
+    // Form submission handler
+    document.getElementById('planningForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const submitBtn = document.getElementById('submitBtn');
+        const formMessage = document.getElementById('formMessage');
+        const originalText = submitBtn.textContent;
+        
+        // Reset message
+        formMessage.style.display = 'none';
+        formMessage.className = '';
+        formMessage.textContent = '';
+        
+        // Validate required fields
+        if (!this.from_name.value.trim() || !this.reply_to.value.trim()) {
+            formMessage.textContent = 'Please fill in all required fields (name and email)';
+            formMessage.style.display = 'block';
+            formMessage.style.background = '#ffebee';
+            formMessage.style.color = '#c62828';
+            formMessage.style.border = '1px solid #ffcdd2';
+            return;
+        }
+        
+        // Show loading state
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Send email using EmailJS
+        emailjs.sendForm('service_2xbjyf7', 'template_rlfd9s2', this)
+            .then(function(response) {
+                console.log('✅ Email sent successfully!', response);
+                
+                // Show success message
+                formMessage.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: #2e7d32; font-size: 20px;">✅</span>
+                        <div>
+                            <strong style="color: #2e7d32;">Success!</strong>
+                            <p style="margin: 5px 0 0; color: #1b5e20;">
+                                Your trip request has been sent. Check your email for confirmation.
+                            </p>
+                        </div>
+                    </div>
+                `;
+                formMessage.style.display = 'block';
+                formMessage.style.background = '#e8f5e9';
+                formMessage.style.border = '1px solid #c8e6c9';
+                
+                // Reset form
+                document.getElementById('planningForm').reset();
+                
+                // Scroll to message
+                formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+            }, function(error) {
+                console.error('❌ Email failed:', error);
+                
+                // Show error message
+                formMessage.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: #c62828; font-size: 20px;">❌</span>
+                        <div>
+                            <strong style="color: #c62828;">Error!</strong>
+                            <p style="margin: 5px 0 0; color: #b71c1c;">
+                                ${error.text || 'Failed to send. Please email us directly at:'}
+                                <br>
+                                <a href="mailto:securetechsolutions71@gmail.com" style="color: #006747; font-weight: bold;">
+                                    securetechsolutions71@gmail.com
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                `;
+                formMessage.style.display = 'block';
+                formMessage.style.background = '#ffebee';
+                formMessage.style.border = '1px solid #ffcdd2';
+                
+            }).finally(function() {
+                // Restore button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+    });
+    
+    // Optional: Form field validation
+    document.querySelectorAll('#planningForm input, #planningForm select, #planningForm textarea').forEach(field => {
+        field.addEventListener('input', function() {
+            const formMessage = document.getElementById('formMessage');
+            if (formMessage.style.display !== 'none') {
+                formMessage.style.display = 'none';
+            }
+        });
+    });
+</script>              
                 <!-- Travel Information -->
                 <div class="plan-info">
                     <h2 style="margin-bottom: 24px;">Essential Travel Information</h2>
