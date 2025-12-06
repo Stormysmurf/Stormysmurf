@@ -3,172 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JamboGuide - Discover Kenya's Best Attractions</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Visit Kenya - Official Guide to Kenya</title>
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="container">
-                <div class="nav-content">
-                    <div class="logo">
-                        <h1><i class="fas fa-paw"></i> JamboGuide</h1>
-                        <p class="tagline">Discover Kenya</p>
-                    </div>
-                    <ul class="nav-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#discover">Discover</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                    <div class="mobile-menu-btn">
-                        <i class="fas fa-bars"></i>
-                    </div>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container-fluid">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <a href="#" class="top-link">Travel Trade</a>
+                    <a href="#" class="top-link">Media</a>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" class="top-link">Newsletter</a>
+                    <select class="language-select">
+                        <option>English</option>
+                        <option>Swahili</option>
+                    </select>
                 </div>
             </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-background">
-            <div class="hero-overlay"></div>
-            <div class="hero-pattern"></div>
         </div>
-        <div class="container">
-            <div class="hero-content">
-                <h2 class="hero-title">Explore Kenya's Hidden Gems</h2>
-                <p class="hero-subtitle">From pristine beaches to majestic mountains, discover experiences that match your wanderlust</p>
+    </div>
 
-                <!-- Search Bar -->
-                <div class="search-container">
-                    <div class="search-input-wrapper">
-                        <i class="fas fa-search search-icon"></i>
-                        <input 
-                            type="text" 
-                            id="searchInput" 
-                            class="search-input" 
-                            placeholder="Search for waterfalls, mountains, beaches, wildlife..."
-                            autocomplete="off"
-                        >
+    <!-- Main Navigation -->
+    <header class="main-header">
+        <div class="container-fluid">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">🇰🇪</span>
+                    <div class="logo-text">
+                        <span class="logo-title">Visit Kenya</span>
+                        <span class="logo-subtitle">Magical Kenya</span>
                     </div>
-                    <button class="search-btn" id="searchBtn">
-                        <i class="fas fa-search"></i>
-                        Search
+                </a>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="destinations.html" class="nav-link">Destinations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="things-to-do.html" class="nav-link">Things to do</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="accommodation.html" class="nav-link">Accommodation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="plan.html" class="nav-link">Plan your trip</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Stories</a>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="search-toggle" id="searchToggle">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </button>
                 </div>
+            </nav>
+        </div>
+    </header>
 
-                <!-- Quick Filters -->
-                <div class="quick-filters">
-                    <button class="filter-chip" data-filter="all">All</button>
-                    <button class="filter-chip" data-filter="beach"><i class="fas fa-umbrella-beach"></i> Beaches</button>
-                    <button class="filter-chip" data-filter="mountain"><i class="fas fa-mountain"></i> Mountains</button>
-                    <button class="filter-chip" data-filter="waterfall"><i class="fas fa-water"></i> Waterfalls</button>
-                    <button class="filter-chip" data-filter="wildlife"><i class="fas fa-paw"></i> Wildlife</button>
-                    <button class="filter-chip" data-filter="cultural"><i class="fas fa-landmark"></i> Cultural</button>
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-overlay-content">
+            <button class="search-close" id="searchClose">&times;</button>
+            <div class="search-box">
+                <input type="text" id="mainSearch" placeholder="Search for destinations, activities, accommodation..." class="search-input-main">
+                <button class="search-submit">Search</button>
+            </div>
+            <div class="search-suggestions">
+                <h4>Popular searches</h4>
+                <div class="suggestion-tags">
+                    <a href="#" class="suggestion-tag">Safari</a>
+                    <a href="#" class="suggestion-tag">Beach holidays</a>
+                    <a href="#" class="suggestion-tag">Mount Kenya</a>
+                    <a href="#" class="suggestion-tag">Maasai Mara</a>
+                    <a href="#" class="suggestion-tag">Diani Beach</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-home">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1600');">
+                <div class="hero-overlay"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Experience the Magic of Kenya</h1>
+                        <p class="hero-description">Discover incredible wildlife, stunning landscapes, and vibrant culture</p>
+                        <div class="hero-buttons">
+                            <a href="destinations.html" class="btn btn-primary">Explore destinations</a>
+                            <a href="plan.html" class="btn btn-secondary">Plan your trip</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="main-content" id="discover">
+    <!-- Quick Links Section -->
+    <section class="quick-links-section">
         <div class="container">
-            <!-- Results Header -->
-            <div class="results-header">
-                <h3 class="results-title">Popular Destinations</h3>
-                <p class="results-count" id="resultsCount">Showing all attractions</p>
-            </div>
-
-            <!-- Destinations Grid -->
-            <div class="destinations-grid" id="destinationsGrid">
-                <!-- Cards will be dynamically inserted here by JavaScript -->
-            </div>
-
-            <!-- Empty State -->
-            <div class="empty-state" id="emptyState" style="display: none;">
-                <i class="fas fa-search fa-3x"></i>
-                <h3>No destinations found</h3>
-                <p>Try adjusting your search or filters</p>
+            <div class="quick-links-grid">
+                <a href="things-to-do.html" class="quick-link-card">
+                    <div class="quick-link-icon">🦁</div>
+                    <h3>Safari Adventures</h3>
+                    <p>Witness the Great Migration</p>
+                </a>
+                <a href="things-to-do.html" class="quick-link-card">
+                    <div class="quick-link-icon">🏖️</div>
+                    <h3>Beach Escapes</h3>
+                    <p>Pristine coastal paradises</p>
+                </a>
+                <a href="things-to-do.html" class="quick-link-card">
+                    <div class="quick-link-icon">⛰️</div>
+                    <h3>Mountain Treks</h3>
+                    <p>Climb majestic peaks</p>
+                </a>
+                <a href="things-to-do.html" class="quick-link-card">
+                    <div class="quick-link-icon">🎭</div>
+                    <h3>Cultural Tours</h3>
+                    <p>Meet local communities</p>
+                </a>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- About Section -->
-    <section class="about-section" id="about">
+    <!-- Featured Destinations -->
+    <section class="featured-section">
         <div class="container">
-            <h2>Why Choose JamboGuide?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-search"></i></div>
-                    <h3>Easy Discovery</h3>
-                    <p>Find attractions by keywords that match your interests</p>
+            <div class="section-header">
+                <h2 class="section-title">Featured destinations</h2>
+                <a href="destinations.html" class="section-link">View all destinations →</a>
+            </div>
+            
+            <div class="featured-grid" id="featuredGrid">
+                <!-- Cards will be inserted by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Inspiration Section -->
+    <section class="inspiration-section">
+        <div class="container">
+            <div class="section-header centered">
+                <h2 class="section-title">Plan your perfect Kenya trip</h2>
+                <p class="section-subtitle">Everything you need to know before you go</p>
+            </div>
+            
+            <div class="inspiration-grid">
+                <article class="inspiration-card large">
+                    <img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=800" alt="Safari guide" class="inspiration-image">
+                    <div class="inspiration-content">
+                        <span class="inspiration-category">Guide</span>
+                        <h3>First-time safari tips</h3>
+                        <p>Everything you need to know for an unforgettable safari experience</p>
+                        <a href="blog.html" class="inspiration-link">Read more →</a>
+                    </div>
+                </article>
+                
+                <article class="inspiration-card">
+                    <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=800" alt="Kenya beaches" class="inspiration-image">
+                    <div class="inspiration-content">
+                        <span class="inspiration-category">Travel</span>
+                        <h3>Best beaches in Kenya</h3>
+                        <p>Discover Kenya's stunning coastline</p>
+                        <a href="blog.html" class="inspiration-link">Read more →</a>
+                    </div>
+                </article>
+                
+                <article class="inspiration-card">
+                    <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800" alt="Local cuisine" class="inspiration-image">
+                    <div class="inspiration-content">
+                        <span class="inspiration-category">Food</span>
+                        <h3>Taste of Kenya</h3>
+                        <p>Explore Kenya's culinary delights</p>
+                        <a href="blog.html" class="inspiration-link">Read more →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Stay inspired</h2>
+                    <p>Sign up for the latest travel inspiration, tips and exclusive offers</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-camera"></i></div>
-                    <h3>Rich Content</h3>
-                    <p>Detailed descriptions and stunning photos of each location</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
-                    <h3>Plan Your Trip</h3>
-                    <p>Create personalized itineraries for unforgettable adventures</p>
-                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" class="newsletter-input">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer" id="contact">
+    <footer class="main-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3><i class="fas fa-paw"></i> JamboGuide</h3>
-                    <p>Your gateway to Kenya's most beautiful destinations</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#discover">Discover</a></li>
-                        <li><a href="#about">About</a></li>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Nairobi</a></li>
+                        <li><a href="#">Mombasa</a></li>
+                        <li><a href="#">Maasai Mara</a></li>
+                        <li><a href="#">Lake Nakuru</a></li>
+                        <li><a href="#">Amboseli</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p><i class="fas fa-envelope"></i> info@jamboguide.com</p>
-                    <p><i class="fas fa-phone"></i> +254 XXX XXX XXX</p>
+                
+                <div class="footer-col">
+                    <h4>Things to do</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Safari tours</a></li>
+                        <li><a href="#">Beach activities</a></li>
+                        <li><a href="#">Cultural experiences</a></li>
+                        <li><a href="#">Adventure sports</a></li>
+                        <li><a href="#">Wildlife viewing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Plan your trip</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Getting here</a></li>
+                        <li><a href="#">Getting around</a></li>
+                        <li><a href="#">Accommodation</a></li>
+                        <li><a href="#">Travel tips</a></li>
+                        <li><a href="#">Visa information</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Visit Kenya</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Press & media</a></li>
+                        <li><a href="#">Trade</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 JamboGuide. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">YouTube</a>
+                </div>
+                <div class="footer-legal">
+                    <p>&copy; 2024 Visit Kenya. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Accessibility</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Modal for Destination Details -->
-    <div class="modal" id="destinationModal">
-        <div class="modal-overlay" id="modalOverlay"></div>
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
-            <div id="modalBody">
-                <!-- Modal content will be dynamically inserted -->
-            </div>
-        </div>
-    </div>
-
-    <script src="data.js"></script>
-    <script src="app.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
