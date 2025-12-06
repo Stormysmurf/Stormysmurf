@@ -182,45 +182,45 @@
                     <form class="plan-form" id="planningForm">
                         <div class="form-group">
                             <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="from_name" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="reply_to" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="dates">Preferred Travel Dates</label>
-                            <input type="text" id="dates" name="dates" placeholder="e.g., July 2025">
+                            <input type="text" id="dates" name="travel_dates" placeholder="e.g., July 2025">
                         </div>
                         
                         <div class="form-group">
                             <label for="duration">Trip Duration</label>
-                            <select id="duration" name="duration">
-                                <option>Select duration</option>
-                                <option>3-5 days</option>
-                                <option>6-10 days</option>
-                                <option>11-14 days</option>
-                                <option>15+ days</option>
+                            <select id="duration" name="trip_duration">
+                                <option value="">Select duration</option>
+                                <option value="3-5 days">3-5 days</option>
+                                <option value="6-10 days">6-10 days</option>
+                                <option value="11-14 days">11-14 days</option>
+                                <option value="15+ days">15+ days</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
                             <label for="interests">Interests</label>
-                            <select id="interests" name="interests">
-                                <option>Select your main interest</option>
-                                <option>Wildlife Safari</option>
-                                <option>Beach Holiday</option>
-                                <option>Cultural Experience</option>
-                                <option>Adventure Activities</option>
-                                <option>Mix of Everything</option>
+                            <select id="interests" name="main_interest">
+                                <option value="">Select your main interest</option>
+                                <option value="Wildlife Safari">Wildlife Safari</option>
+                                <option value="Beach Holiday">Beach Holiday</option>
+                                <option value="Cultural Experience">Cultural Experience</option>
+                                <option value="Adventure Activities">Adventure Activities</option>
+                                <option value="Mix of Everything">Mix of Everything</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
                             <label for="travelers">Number of Travelers</label>
-                            <input type="number" id="travelers" name="travelers" min="1" value="2">
+                            <input type="number" id="travelers" name="number_of_travelers" min="1" value="2">
                         </div>
                         
                         <div class="form-group">
@@ -386,13 +386,5 @@
     </footer>
 
     <script src="app.js"></script>
-    <script>
-        // Form submission handler
-        document.getElementById('planningForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your interest! Our travel experts will contact you within 24 hours with personalized recommendations.');
-            this.reset();
-        });
-    </script>
 </body>
 </html>
