@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mobile menu
     initializeMobileMenu();
+    
+    // Trip Planning Form (EmailJS)
+    initializeTripPlanningForm();
 });
 
 // Render featured destinations
@@ -136,6 +139,59 @@ if (newsletterForm) {
             this.reset();
         }
     });
+}
+
+// Trip Planning Form with EmailJS
+function initializeTripPlanningForm() {
+    const planningForm = document.getElementById('planningForm');
+    if (!planningForm) return;
+    
+    // Load EmailJS library dynamically
+    const emailjsScript = document.createElement('script');
+    emailjsScript.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    emailjsScript.onload = function() {
+        // Initialize EmailJS with your Public Key
+        emailjs.init("kWwPttIOCMN0lL616");
+        
+        // Setup form submission handler
+        planningForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Send email using EmailJS
+            emailjs.sendForm('service_2xbjyf7', 'template_rf6952', this)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('✅ Thank you! Your trip request has been sent. Check your email for confirmation and expect personalized recommendations within 24 hours.');
+                    planningForm.reset();
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    alert('❌ Oops! Failed to send. Please email us directly at: securetechsolutions71@gmail.com');
+                })
+                .finally(function() {
+                    // Restore button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
+    };
+    
+    // Handle script load error
+    emailjsScript.onerror = function() {
+        console.error('Failed to load EmailJS library');
+        planningForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Service temporarily unavailable. Please email: securetechsolutions71@gmail.com');
+        });
+    };
+    
+    document.head.appendChild(emailjsScript);
 }
 
 // Open destination modal
