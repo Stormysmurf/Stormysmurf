@@ -1127,3 +1127,149 @@ img {
     opacity: 0.7;
     cursor: not-allowed;
 }
+
+/* Mobile Menu Styles - Add this to style.css */
+
+/* Menu Toggle Animation */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+    position: relative;
+}
+
+.menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-dark);
+    transition: 0.3s;
+    display: block;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Menu Layout */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 73px; /* Adjust based on your header height */
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: var(--shadow-lg);
+        z-index: 1000;
+        overflow-y: auto;
+        max-height: calc(100vh - 73px);
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-item {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .nav-link {
+        display: block;
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-dark);
+        transition: all 0.3s ease;
+        border-radius: 4px;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        background: var(--primary-color);
+        color: var(--white);
+        border-bottom-color: transparent;
+    }
+    
+    .nav-link:hover {
+        transform: translateX(8px);
+    }
+    
+    /* Adjust header for mobile */
+    .main-nav {
+        padding: 12px 0;
+    }
+    
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    
+    /* Ensure body doesn't scroll when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+    
+    /* Fix menu on smaller screens */
+    @media (max-width: 480px) {
+        .nav-menu {
+            top: 65px;
+            max-height: calc(100vh - 65px);
+        }
+        
+        .container-fluid {
+            padding: 0 15px;
+        }
+    }
+}
+
+/* Prevent horizontal scroll when menu is open */
+body {
+    overflow-x: hidden;
+}
+
+/* Animation for menu items */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.nav-menu.active .nav-item {
+    animation: slideIn 0.3s ease forwards;
+}
+
+.nav-menu.active .nav-item:nth-child(1) { animation-delay: 0.1s; }
+.nav-menu.active .nav-item:nth-child(2) { animation-delay: 0.2s; }
+.nav-menu.active .nav-item:nth-child(3) { animation-delay: 0.3s; }
+.nav-menu.active .nav-item:nth-child(4) { animation-delay: 0.4s; }
+.nav-menu.active .nav-item:nth-child(5) { animation-delay: 0.5s; }
