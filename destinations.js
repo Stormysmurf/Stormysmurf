@@ -1,3 +1,4 @@
+
 // Destinations Page JavaScript
 
 let currentFilter = 'all';
@@ -19,8 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize search overlay
     initializeSearchOverlay();
     
-    // Initialize mobile menu
-    initializeMobileMenu();
+   
 });
 
 // Initialize filter chips
