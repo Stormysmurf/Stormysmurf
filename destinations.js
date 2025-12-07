@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize search overlay
     initializeSearchOverlay();
-    
+    // int mobile menu
+    initializeMobileMenu();
    
 });
 
