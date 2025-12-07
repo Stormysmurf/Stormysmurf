@@ -287,18 +287,6 @@ function initializeSearchOverlay() {
     }
 }
 
-// Mobile menu functionality
-function initializeMobileMenu() {
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            this.classList.toggle('active');
-        });
-    }
-}
 
 // Handle browser back/forward
 window.addEventListener('popstate', function() {
