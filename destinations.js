@@ -299,3 +299,69 @@ window.addEventListener('popstate', function() {
         closeModal();
     }
 });
+
+// Mobile menu functionality
+function initializeMobileMenu() {
+    console.log('Initializing mobile menu in destinations.js...');
+    
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    console.log('Menu toggle found:', !!menuToggle);
+    console.log('Nav menu found:', !!navMenu);
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Menu toggle clicked in destinations.js');
+            
+            // Toggle active classes
+            navMenu.classList.toggle('active');
+            this.classList.toggle('active');
+            
+            // Toggle body overflow
+            if (navMenu.classList.contains('active')) {
+                document.body.classList.add('menu-open');
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu when clicking a link
+        navMenu.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+            }
+        });
+    } else {
+        console.error('Mobile menu elements not found!');
+    }
+}
