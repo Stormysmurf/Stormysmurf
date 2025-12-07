@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation - Visit Kenya</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="accommodation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container-fluid">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <a href="#" class="top-link">Travel Trade</a>
+                    <a href="#" class="top-link">Media</a>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" class="top-link">Newsletter</a>
+                    <select class="language-select">
+                        <option>English</option>
+                        <option>Swahili</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="main-header">
+        <div class="container-fluid">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">🇰🇪</span>
+                    <div class="logo-text">
+                        <span class="logo-title">Visit Kenya</span>
+                        <span class="logo-subtitle">Magical Kenya</span>
+                    </div>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li class="nav-item"><a href="things-to-do.html" class="nav-link">Things to do</a></li>
+                    <li class="nav-item"><a href="accommodation.html" class="nav-link active">Accommodation</a></li>
+                    <li class="nav-item"><a href="plan.html" class="nav-link">Plan your trip</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Stories</a></li>
+                    <li class="nav-item"><a href="slang.html" class="nav-link">Local Slang</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="search-toggle" id="searchToggle">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Accommodation</span>
+            </nav>
+            <h1 class="page-title">Where to Stay in Kenya</h1>
+            <p class="page-subtitle">From luxury safari lodges to beachfront resorts and budget-friendly camps</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label>Filter by type:</label>
+                    <div class="filter-chips">
+                        <button class="filter-chip active" data-type="all">All</button>
+                        <button class="filter-chip" data-type="luxury">Luxury Lodges</button>
+                        <button class="filter-chip" data-type="resort">Beach Resorts</button>
+                        <button class="filter-chip" data-type="camp">Tented Camps</button>
+                        <button class="filter-chip" data-type="hotel">City Hotels</button>
+                        <button class="filter-chip" data-type="budget">Budget Stays</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodation Grid -->
+    <section class="accommodation-section">
+        <div class="container">
+            <div class="accommodation-grid" id="accommodationGrid">
+                
+                <!-- Luxury Lodge -->
+                <div class="accommodation-card" data-type="luxury">
+                    <div class="accommodation-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800" alt="Luxury Safari Lodge">
+                        <span class="accommodation-badge luxury">Luxury</span>
+                        <div class="accommodation-price">$450-800/night</div>
+                    </div>
+                    <div class="accommodation-content">
+                        <div class="accommodation-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="review-count">(245 reviews)</span>
+                        </div>
+                        <h3>Angama Mara</h3>
+                        <p class="accommodation-location">📍 Maasai Mara</p>
+                        <p class="accommodation-description">Perched on the edge of the Great Rift Valley, offering breathtaking views over the Maasai Mara. Experience world-class safari luxury with intimate tented suites.</p>
+                        <div class="accommodation-amenities">
+                            <span class="amenity">🍽️ Fine Dining</span>
+                            <span class="amenity">🏊 Infinity Pool</span>
+                            <span class="amenity">📸 Photography Studio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beach Resort -->
+                <div class="accommodation-card" data-type="resort">
+                    <div class="accommodation-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800" alt="Beach Resort">
+                        <span class="accommodation-badge resort">Beach Resort</span>
+                        <div class="accommodation-price">$280-550/night</div>
+                    </div>
+                    <div class="accommodation-content">
+                        <div class="accommodation-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="review-count">(398 reviews)</span>
+                        </div>
+                        <h3>The Sands at Nomad</h3>
+                        <p class="accommodation-location">📍 Diani Beach</p>
+                        <p class="accommodation-description">Boutique beach resort with pristine white sands and turquoise waters. Perfect blend of luxury and Swahili coastal charm with personalized service.</p>
+                        <div class="accommodation-amenities">
+                            <span class="amenity">🤿 Water Sports</span>
+                            <span class="amenity">🍹 Beach Bar</span>
+                            <span class="amenity">💆 Spa Services</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tented Camp -->
+                <div class="accommodation-card" data-type="camp">
+                    <div class="accommodation-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800" alt="Tented Camp">
+                        <span class="accommodation-badge camp">Tented Camp</span>
+                        <div class="accommodation-price">$320-600/night</div>
+                    </div>
+                    <div class="accommodation-content">
+                        <div class="accommodation-rating">
+                            <span class="stars">★★★★½</span>
+                            <span class="review-count">(187 reviews)</span>
+                        </div>
+                        <h3>Governors' Camp</h3>
+                        <p class="accommodation-location">📍 Maasai Mara</p>
+                        <p class="accommodation-description">Classic tented camp on the banks of the Mara River. Authentic safari experience with luxury amenities and incredible wildlife viewing opportunities.</p>
+                        <div class="accommodation-amenities">
+                            <span class="amenity">🦁 Game Drives</span>
+                            <span class="amenity">🔥 Campfire Dinners</span>
+                            <span class="amenity">🌅 Bush Walks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- City Hotel -->
+                <div class="accommodation-card" data-type="hotel">
+                    <div class="accommodation-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800" alt="City Hotel">
+                        <span class="accommodation-badge hotel">City Hotel</span>
+                        <div class="accommodation-price">$150-300/night</div>
+                    </div>
+                    <div class="accommodation-content">
+                        <div class="accommodation-rating">
+                            <span class="stars">★★★★</span>
+                            <span class="review-count">(512 reviews)</span>
+                        </div>
+                        <h3>Hemingways Nairobi</h3>
+                        <p class="accommodation-location">📍 Nairobi</p>
+                        <p class="accommodation-description">Elegant urban retreat in Karen, Nairobi's most prestigious suburb. Perfect base for city exploration with world-class dining and wellness facilities.</p>
+                        <div class="accommodation-amenities">
+                            <span class="amenity">🍽️ Restaurant</span>
+                            <span class="amenity">🏋️ Fitness Center</span>
+                            <span class="amenity">🚕 Airport Transfer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budget Stay -->
+                <div class="accommodation-card" data-type="budget">
+                    <div class="accommodation-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800" alt="Budget Accommodation">
+                        <span class="accommodation-badge budget">Budget Friendly</span>
+                        <div class="accommodation-price">$40-80/night</div>
+                    </div>
+                    <div class="accommodation-content">
+                        <div class="accommodation-rating">
+                            <span class="stars">★★★★</span>
+                            <span class="review-count">(289 reviews)</span>
+                        </div>
+                        <h3>Wildebeest Eco Camp</h3>
+                        <p class="accommodation-location">📍 Naivasha</p>
+                        <p class="accommodation-description">Eco-friendly camp offering comfortable accommodation at great value. Perfect for budget travelers seeking authentic Kenyan experience near Lake Naivasha.</p>
+                        <div class="accommodation-amenities">
+                            <span class="amenity">🏕️ Camping</span>
+                            <span class="amenity">🚿 Shared Facilities</span>
+                            <span class="amenity">🔥 Communal Kitchen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Luxury Lodge 2 -->
+                <div class="accommodation-card" data-type="luxury">
+                    <div class="accommodation-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800" alt="Luxury Lodge">
+                        <span class="accommodation-badge luxury">Luxury</span>
+                        <div class="accommodation-price">$650-1200/night</div>
+                    </div>
+                    <div class="accommodation-content">
+                        <div class="accommodation-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="review-count">(176 reviews)</span>
+                        </div>
+                        <h3>Giraffe Manor</h3>
+                        <p class="accommodation-location">📍 Nairobi</p>
+                        <p class="accommodation-description">Iconic boutique hotel where resident Rothschild giraffes visit during breakfast. Unique luxury experience in a 1930s manor house set in 12 acres of forest.</p>
+                        <div class="accommodation-amenities">
+                            <span class="amenity">🦒 Giraffe Interaction</span>
+                            <span class="amenity">🍳 Gourmet Breakfast</span>
+                            <span class="amenity">🌳 Garden Tours</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodation Types Info -->
+    <section class="accommodation-info-section">
+        <div class="container">
+            <h2 class="section-title">Types of Accommodation in Kenya</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">🏨</div>
+                    <h3>Luxury Lodges</h3>
+                    <p>Experience 5-star comfort in the wilderness with gourmet dining, spa facilities, and private game drives. Perfect for honeymoons and special occasions.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">⛺</div>
+                    <h3>Tented Camps</h3>
+                    <p>Authentic safari experience with luxury amenities. Canvas tents with ensuite bathrooms, situated in prime wildlife viewing locations.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🏖️</div>
+                    <h3>Beach Resorts</h3>
+                    <p>Coastal properties offering water sports, spa treatments, and access to pristine beaches. From boutique hotels to all-inclusive resorts.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🏙️</div>
+                    <h3>City Hotels</h3>
+                    <p>Modern accommodations in Nairobi and Mombasa with business facilities, restaurants, and easy access to urban attractions.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">💰</div>
+                    <h3>Budget Options</h3>
+                    <p>Hostels, guesthouses, and eco-camps offering clean, comfortable stays for budget-conscious travelers without compromising on experience.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🏡</div>
+                    <h3>Homestays</h3>
+                    <p>Immerse yourself in local culture by staying with Kenyan families. Authentic experience with home-cooked meals and cultural exchange.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Tips -->
+    <section class="tips-section">
+        <div class="container">
+            <h2 class="section-title">Booking Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <span class="tip-number">1</span>
+                    <h4>Book in Advance</h4>
+                    <p>Popular lodges and camps, especially during peak season (July-October), fill up months ahead. Book 6-12 months early for best availability.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-number">2</span>
+                    <h4>Consider All-Inclusive</h4>
+                    <p>Many safari lodges offer all-inclusive packages covering meals, game drives, and park fees. Often better value than paying separately.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-number">3</span>
+                    <h4>Check Location</h4>
+                    <p>Ensure your accommodation is well-located for your planned activities. Consider proximity to national parks, beaches, or airports.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-number">4</span>
+                    <h4>Read Reviews</h4>
+                    <p>Check recent reviews on multiple platforms. Look for comments about service quality, food, wildlife sightings, and value for money.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to book your Kenyan stay?</h2>
+                <p>Let us help you find the perfect accommodation</p>
+                <a href="plan.html" class="btn btn-primary">Plan your trip</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Nairobi</a></li>
+                        <li><a href="#">Mombasa</a></li>
+                        <li><a href="#">Maasai Mara</a></li>
+                        <li><a href="#">Lake Nakuru</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Things to do</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Safari tours</a></li>
+                        <li><a href="#">Beach activities</a></li>
+                        <li><a href="#">Cultural experiences</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Plan your trip</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Getting here</a></li>
+                        <li><a href="#">Accommodation</a></li>
+                        <li><a href="#">Travel tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Instagram</a>
+                </div>
+                <div class="footer-legal">
+                    <p>&copy; 2024 Visit Kenya. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="accommodation.js"></script>
+</body>
+</html>
