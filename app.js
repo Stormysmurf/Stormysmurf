@@ -9,11 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Search functionality
     initializeSearch();
 
-    // Mobile menu
+    // Mobile menu - THIS WAS BEING CALLED
     initializeMobileMenu();
-    
-    // Trip Planning Form (EmailJS)
-    initializeTripPlanningForm();
 });
 
 // Render featured destinations
@@ -117,13 +114,49 @@ function initializeSearch() {
 
 // Mobile menu functionality
 function initializeMobileMenu() {
+    console.log('Mobile menu function called'); // Debug log
+    
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.querySelector('.nav-menu');
 
+    console.log('Menu toggle element:', menuToggle); // Debug log
+    console.log('Nav menu element:', navMenu); // Debug log
+
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
+        menuToggle.addEventListener('click', function(e) {
+            console.log('Menu button clicked!'); // Debug log
+            e.preventDefault();
+            e.stopPropagation();
+            
             navMenu.classList.toggle('active');
             this.classList.toggle('active');
+            
+            // Toggle body overflow
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu when clicking a link
+        navMenu.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     }
 }
@@ -141,31 +174,7 @@ if (newsletterForm) {
     });
 }
 
-// Trip Planning Form with EmailJS
-function initializeTripPlanningForm() {
-    const planningForm = document.getElementById('planningForm');
-    if (!planningForm) return;
-    
-    // Load EmailJS library dynamically
-    const emailjsScript = document.createElement('script');
-    emailjsScript.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    emailjsScript.onload = function() {
-        // Initialize EmailJS with your Public Key
-        emailjs.init("kWwPttIOCMN0lL616");
-        
-        // Setup form submission handler
-        planningForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            // Show loading state
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-          
-// Open destination modal
+// Open destination modal from homepage
 function openDestinationModal(id) {
     const destination = destinationsData.find(d => d.id === id);
     if (!destination) return;
