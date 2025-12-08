@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories - Visit Kenya</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container-fluid">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <a href="#" class="top-link">Travel Trade</a>
+                    <a href="#" class="top-link">Media</a>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" class="top-link">Newsletter</a>
+                    <select class="language-select">
+                        <option>English</option>
+                        <option>Swahili</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="main-header">
+        <div class="container-fluid">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">🇰🇪</span>
+                    <div class="logo-text">
+                        <span class="logo-title">Visit Kenya</span>
+                        <span class="logo-subtitle">Magical Kenya</span>
+                    </div>
+                </a>
+
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li class="nav-item"><a href="things-to-do.html" class="nav-link">Things to do</a></li>
+                    <li class="nav-item"><a href="accommodation.html" class="nav-link">Accommodation</a></li>
+                    <li class="nav-item"><a href="plan.html" class="nav-link">Plan your trip</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link active">Stories</a></li>
+                    <li class="nav-item"><a href="slang.html" class="nav-link">Local Slang</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="search-toggle" id="searchToggle">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Stories</span>
+            </nav>
+            <h1 class="page-title">Kenya Travel Stories & Guides</h1>
+            <p class="page-subtitle">Inspiration, tips, and insider knowledge from experienced travelers and locals</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label>Browse by:</label>
+                    <div class="filter-chips">
+                        <button class="filter-chip active" data-category="all">All Stories</button>
+                        <button class="filter-chip" data-category="guide">Travel Guides</button>
+                        <button class="filter-chip" data-category="experience">Experiences</button>
+                        <button class="filter-chip" data-category="food">Food & Culture</button>
+                        <button class="filter-chip" data-category="wildlife">Wildlife</button>
+                        <button class="filter-chip" data-category="tips">Travel Tips</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Story -->
+    <section class="featured-story-section">
+        <div class="container">
+            <article class="featured-story">
+                <div class="featured-story-image">
+                    <img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1200" alt="Safari Experience">
+                </div>
+                <div class="featured-story-content">
+                    <span class="story-badge featured">Featured Story</span>
+                    <h2>My First Safari: A Life-Changing Journey Through Maasai Mara</h2>
+                    <div class="story-meta">
+                        <span class="story-author">By Sarah Mitchell</span>
+                        <span class="story-date">December 5, 2024</span>
+                        <span class="story-read-time">8 min read</span>
+                    </div>
+                    <p class="story-excerpt">Witnessing the Great Migration was everything I dreamed of and more. Here's what I learned from my unforgettable week in Kenya's most famous reserve...</p>
+                    <a href="#" class="btn btn-primary">Read Full Story</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Stories Grid -->
+    <section class="stories-section">
+        <div class="container">
+            <div class="stories-grid" id="storiesGrid">
+
+                <!-- Story Card 1 -->
+                <article class="story-card" data-category="guide">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=800" alt="Beach Guide">
+                        <span class="story-category">Travel Guide</span>
+                    </div>
+                    <div class="story-content">
+                        <h3>Ultimate Guide to Kenya's Best Beaches</h3>
+                        <div class="story-meta">
+                            <span>Nov 28, 2024</span>
+                            <span>6 min read</span>
+                        </div>
+                        <p>From Diani's white sands to Watamu's coral reefs, discover Kenya's most stunning coastal destinations and when to visit them.</p>
+                        <a href="#" class="story-link">Read more →</a>
+                    </div>
+                </article>
+
+                <!-- Story Card 2 -->
+                <article class="story-card" data-category="food">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800" alt="Kenyan Food">
+                        <span class="story-category">Food & Culture</span>
+                    </div>
+                    <div class="story-content">
+                        <h3>10 Kenyan Dishes You Must Try</h3>
+                        <div class="story-meta">
+                            <span>Nov 25, 2024</span>
+                            <span>5 min read</span>
+                        </div>
+                        <p>From ugali to nyama choma, explore Kenya's rich culinary heritage through these essential dishes that define the nation's food culture.</p>
+                        <a href="#" class="story-link">Read more →</a>
+                    </div>
+                </article>
+
+                <!-- Story Card 3 -->
+                <article class="story-card" data-category="experience">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1590750107181-4c0abaee9661?w=800" alt="Mountain Climbing">
+                        <span class="story-category">Experience</span>
+                    </div>
+                    <div class="story-content">
+                        <h3>Conquering Mount Kenya: A Beginner's Journey</h3>
+                        <div class="story-meta">
+                            <span>Nov 22, 2024</span>
+                            <span>10 min read</span>
+                        </div>
+                        <p>My first high-altitude trek was challenging but incredibly rewarding. Here's everything I wish I knew before attempting Point Lenana.</p>
+                        <a href="#" class="story-link">Read more →</a>
+                    </div>
+                </article>
+
+                <!-- Story Card 4 -->
+                <article class="story-card" data-category="wildlife">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800" alt="Wildlife">
+                        <span class="story-category">Wildlife</span>
+                    </div>
+                    <div class="story-content">
+                        <h3>Photography Tips for Your First Safari</h3>
+                        <div class="story-meta">
+                            <span>Nov 20, 2024</span>
+                            <span>7 min read</span>
+                        </div>
+                        <p>Capture stunning wildlife photos with these expert tips for camera settings, composition, and timing during your Kenyan safari.</p>
+                        <a href="#" class="story-link">Read more →</a>
+                    </div>
+                </article>
+
+                <!-- Story Card 5 -->
+                <article class="story-card" data-category="tips">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800" alt="Travel Tips">
+                        <span class="story-category">Travel Tips</span>
+                    </div>
+                    <div class="story-content">
+                        <h3>Budget Travel in Kenya: How to Save Money</h3>
+                        <div class="story-meta">
+                            <span>Nov 18, 2024</span>
+                            <span>6 min read</span>
+                        </div>
+                        <p>Experience Kenya without breaking the bank. Practical tips for accommodation, transport, food, and activities on a budget.</p>
+                        <a href="#" class="story-link">Read more →</a>
+                    </div>
+                </article>
+
+                <!-- Story Card 6 -->
+                <article class="story-card" data-category="guide">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1591343395902-bce8b5a5f36e?w=800" alt="Lamu Island">
+                        <span class="story-category">Travel Guide</span>
+                    </div>
+                    <div class="story-content">
+                        <h3>3 Days in Lamu: A Timeless Island Escape</h3>
+                        <div class="story-meta">
+                            <span>Nov 15, 2024</span>
+                            <span>8 min read</span>
+                        </div>
+                        <p>Step back in time in this UNESCO World Heritage site. Perfect itinerary for exploring Lamu's historic streets and pristine beaches.</p>
+                        <a href="#" class="story-link">Read more →</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-cta-blog">
+        <div class="container">
+            <div class="newsletter-blog-content">
+                <h2>Never miss a story</h2>
+                <p>Get our latest travel stories, tips, and exclusive content delivered to your inbox</p>
+                <form class="newsletter-form-blog">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Nairobi</a></li>
+                        <li><a href="#">Mombasa</a></li>
+                        <li><a href="#">Maasai Mara</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Things to do</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Safari tours</a></li>
+                        <li><a href="#">Beach activities</a></li>
+                        <li><a href="#">Cultural experiences</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Plan your trip</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Getting here</a></li>
+                        <li><a href="#">Accommodation</a></li>
+                        <li><a href="#">Travel tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Instagram</a>
+                </div>
+                <div class="footer-legal">
+                    <p>&copy; 2024 Visit Kenya. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/blog.js"></script>
+</body>
+</html>
