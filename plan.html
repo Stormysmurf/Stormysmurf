@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan Your Trip - Visit Kenya</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
     <style>
         .plan-section {
             padding: 60px 0;
         }
-        
+
         .plan-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             margin-top: 40px;
         }
-        
+
         .plan-form {
             background: var(--white);
             padding: 40px;
@@ -25,18 +25,18 @@
             box-shadow: var(--shadow-md);
             border: 1px solid var(--border-color);
         }
-        
+
         .form-group {
             margin-bottom: 24px;
         }
-        
+
         .form-group label {
             display: block;
             font-weight: 600;
             margin-bottom: 8px;
             color: var(--text-dark);
         }
-        
+
         .form-group input,
         .form-group select,
         .form-group textarea {
@@ -47,16 +47,16 @@
             font-size: 15px;
             font-family: 'Open Sans', sans-serif;
         }
-        
+
         .form-group textarea {
             resize: vertical;
             min-height: 100px;
         }
-        
+
         .plan-info {
             padding: 40px;
         }
-        
+
         .info-box {
             background: var(--bg-light);
             padding: 24px;
@@ -64,28 +64,28 @@
             margin-bottom: 24px;
             border-left: 4px solid var(--primary-color);
         }
-        
+
         .info-box h3 {
             font-size: 20px;
             margin-bottom: 12px;
             color: var(--primary-color);
         }
-        
+
         .info-box ul {
             margin-left: 20px;
         }
-        
+
         .info-box li {
             margin-bottom: 8px;
             color: var(--text-gray);
         }
-        
+
         @media (max-width: 768px) {
             .plan-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
+
             .plan-form {
                 padding: 24px;
             }
@@ -123,7 +123,7 @@
                         <span class="logo-subtitle">Magical Kenya</span>
                     </div>
                 </a>
-                
+
                <!-- menu buttons -->
 <ul class="nav-menu">
     <li class="nav-item"><a href="destinations.html" class="nav-link active">Destinations</a></li>
@@ -176,17 +176,17 @@
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="from_name" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="email">Email Address *</label>
                         <input type="email" id="email" name="reply_to" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="dates">Preferred Travel Dates</label>
                         <input type="text" id="dates" name="travel_dates" placeholder="e.g., July 2025">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="duration">Trip Duration</label>
                         <select id="duration" name="trip_duration">
@@ -197,7 +197,7 @@
                             <option value="15+ days">15+ days</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="interests">Interests</label>
                         <select id="interests" name="main_interest">
@@ -209,29 +209,29 @@
                             <option value="Mix of Everything">Mix of Everything</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="travelers">Number of Travelers</label>
                         <input type="number" id="travelers" name="number_of_travelers" min="1" value="2">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="message">Additional Information</label>
                         <textarea id="message" name="message" placeholder="Tell us about any specific requirements or questions..."></textarea>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">
                         Get Trip Recommendations
                     </button>
-                    
+
                     <div id="formMessage" style="margin-top: 16px; display: none; padding: 12px; border-radius: 4px;"></div>
                 </form>
             </div>
-            
+
             <!-- Travel Information (keep your existing info boxes here) -->
             <div class="plan-info">
                 <h2 style="margin-bottom: 24px;">Essential Travel Information</h2>
-                
+
                 <div class="info-box">
                     <h3>Visa Requirements</h3>
                     <p>Most visitors can obtain an e-Visa online before traveling to Kenya. The process typically takes 2-7 business days.</p>
@@ -241,7 +241,7 @@
                         <li>Transit visa: $21 USD</li>
                     </ul>
                 </div>
-                
+
                 <div class="info-box">
                     <h3>Best Time to Visit</h3>
                     <p>Kenya can be visited year-round, but timing depends on your interests:</p>
@@ -252,7 +252,7 @@
                         <li><strong>June-October:</strong> Coolest months, ideal for trekking</li>
                     </ul>
                 </div>
-                
+
                 <div class="info-box">
                     <h3>Health & Safety</h3>
                     <ul>
@@ -262,7 +262,7 @@
                         <li>Tap water not safe to drink - use bottled water</li>
                     </ul>
                 </div>
-                
+
                 <div class="info-box">
                     <h3>Currency & Budget</h3>
                     <ul>
@@ -284,21 +284,21 @@
     (function() {
         emailjs.init("kWwPttIOCMN0lL616");
     })();
-    
+
     // Form submission handler
     document.getElementById('planningForm').addEventListener('submit', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        
+
         const submitBtn = document.getElementById('submitBtn');
         const formMessage = document.getElementById('formMessage');
         const originalText = submitBtn.textContent;
-        
+
         // Reset message
         formMessage.style.display = 'none';
         formMessage.className = '';
         formMessage.textContent = '';
-        
+
         // Validate required fields
         if (!this.from_name.value.trim() || !this.reply_to.value.trim()) {
             formMessage.textContent = 'Please fill in all required fields (name and email)';
@@ -308,16 +308,16 @@
             formMessage.style.border = '1px solid #ffcdd2';
             return;
         }
-        
+
         // Show loading state
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
-        
+
         // Send email using EmailJS
         emailjs.sendForm('service_2xbjyf7', 'template_rlfd9s2', this)
             .then(function(response) {
                 console.log('✅ Email sent successfully!', response);
-                
+
                 // Show success message
                 formMessage.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 10px;">
@@ -333,16 +333,16 @@
                 formMessage.style.display = 'block';
                 formMessage.style.background = '#e8f5e9';
                 formMessage.style.border = '1px solid #c8e6c9';
-                
+
                 // Reset form
                 document.getElementById('planningForm').reset();
-                
+
                 // Scroll to message
                 formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                
+
             }, function(error) {
                 console.error('❌ Email failed:', error);
-                
+
                 // Show error message
                 formMessage.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 10px;">
@@ -362,14 +362,14 @@
                 formMessage.style.display = 'block';
                 formMessage.style.background = '#ffebee';
                 formMessage.style.border = '1px solid #ffcdd2';
-                
+
             }).finally(function() {
                 // Restore button
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
             });
     });
-    
+
     // Optional: Form field validation
     document.querySelectorAll('#planningForm input, #planningForm select, #planningForm textarea').forEach(field => {
         field.addEventListener('input', function() {
@@ -383,7 +383,7 @@
                 <!-- Travel Information -->
                 <div class="plan-info">
                     <h2 style="margin-bottom: 24px;">Essential Travel Information</h2>
-                    
+
                     <div class="info-box">
                         <h3>Visa Requirements</h3>
                         <p>Most visitors can obtain an e-Visa online before traveling to Kenya. The process typically takes 2-7 business days.</p>
@@ -393,7 +393,7 @@
                             <li>Transit visa: $21 USD</li>
                         </ul>
                     </div>
-                    
+
                     <div class="info-box">
                         <h3>Best Time to Visit</h3>
                         <p>Kenya can be visited year-round, but timing depends on your interests:</p>
@@ -404,7 +404,7 @@
                             <li><strong>June-October:</strong> Coolest months, ideal for trekking</li>
                         </ul>
                     </div>
-                    
+
                     <div class="info-box">
                         <h3>Health & Safety</h3>
                         <ul>
@@ -414,7 +414,7 @@
                             <li>Tap water not safe to drink - use bottled water</li>
                         </ul>
                     </div>
-                    
+
                     <div class="info-box">
                         <h3>Currency & Budget</h3>
                         <ul>
@@ -435,7 +435,7 @@
             <div class="section-header centered">
                 <h2 class="section-title">Helpful Resources</h2>
             </div>
-            
+
             <div class="featured-grid">
                 <article class="destination-card">
                     <div class="card-body">
@@ -444,7 +444,7 @@
                         <a href="#" class="btn btn-primary" style="margin-top: 16px;">View itineraries</a>
                     </div>
                 </article>
-                
+
                 <article class="destination-card">
                     <div class="card-body">
                         <h3 class="card-title">📝 Travel Tips</h3>
@@ -452,7 +452,7 @@
                         <a href="#" class="btn btn-primary" style="margin-top: 16px;">Read tips</a>
                     </div>
                 </article>
-                
+
                 <article class="destination-card">
                     <div class="card-body">
                         <h3 class="card-title">🏨 Accommodation Guide</h3>
@@ -478,7 +478,7 @@
                         <li><a href="#">Amboseli</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-col">
                     <h4>Things to do</h4>
                     <ul class="footer-links">
@@ -489,7 +489,7 @@
                         <li><a href="#">Wildlife viewing</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-col">
                     <h4>Plan your trip</h4>
                     <ul class="footer-links">
@@ -500,7 +500,7 @@
                         <li><a href="#">Visa information</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-col">
                     <h4>About</h4>
                     <ul class="footer-links">
@@ -512,7 +512,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-social">
                     <a href="#" class="social-link">Facebook</a>
@@ -533,12 +533,12 @@
         </div>
     </footer>
 
-    <script src="../js/app.js"></script>
+    <script src="js/app.js"></script>
 
     <!-- Add this RIGHT BEFORE </body> in plan.html -->
 <script>
     console.log('Debug: Form exists?', !!document.getElementById('planningForm'));
-    
+
     document.getElementById('planningForm').addEventListener('submit', function(e) {
         e.preventDefault();
         console.log('Form submitted!');
@@ -551,7 +551,7 @@
             travelers: this.number_of_travelers?.value,
             message: this.message?.value
         });
-        
+
         // Test if EmailJS is loaded
         console.log('EmailJS loaded?', typeof emailjs !== 'undefined');
         if (typeof emailjs !== 'undefined') {
