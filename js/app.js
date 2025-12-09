@@ -6,11 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
         renderFeaturedDestinations();
     }
 
+    // Initialize quick link cards with background images
+    initializeQuickLinks();
+
     // Search functionality
     initializeSearch();
 
-    // Mobile menu - THIS WAS BEING CALLED
+    // Mobile menu
     initializeMobileMenu();
+
+    // Newsletter form
+    initializeNewsletter();
 });
 
 // Render featured destinations
@@ -24,7 +30,7 @@ function renderFeaturedDestinations() {
         <article class="destination-card" onclick="openDestinationModal(${dest.id})">
             <div class="card-image-wrapper">
                 <img src="${dest.image}" alt="${dest.name}" class="card-image">
-                <span class="card-badge">${dest.category}</span>
+                <span class="card-badge">${dest.category.charAt(0).toUpperCase() + dest.category.slice(1)}</span>
             </div>
             <div class="card-body">
                 <h3 class="card-title">${dest.name}</h3>
@@ -40,11 +46,51 @@ function renderFeaturedDestinations() {
                     <div class="card-tags">
                         ${dest.tags.slice(0, 2).map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
-                    <a href="#" class="card-link" onclick="event.preventDefault();">Learn more →</a>
+                    <a href="destinations.html?id=${dest.id}" class="card-link">Learn more →</a>
                 </div>
             </div>
         </article>
     `).join('');
+}
+
+// Initialize quick link cards with background images
+function initializeQuickLinks() {
+    const quickLinkCards = document.querySelectorAll('.quick-link-card--bg');
+    
+    quickLinkCards.forEach(card => {
+        const bgImage = card.getAttribute('data-bg');
+        if (bgImage) {
+            // Apply background image immediately
+            card.style.backgroundImage = `url('${bgImage}')`;
+            
+            // Preload image for better performance
+            const img = new Image();
+            img.src = bgImage;
+            img.onload = () => {
+                card.style.backgroundImage = `url('${bgImage}')`;
+                card.style.opacity = '1';
+            };
+            img.onerror = () => {
+                console.warn(`Failed to load image: ${bgImage}`);
+                // Fallback color
+                card.style.backgroundColor = '#006747';
+                card.style.opacity = '1';
+            };
+            
+            // Set initial opacity
+            card.style.opacity = '0.8';
+            card.style.transition = 'opacity 0.3s ease';
+        }
+        
+        // Add hover effect
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
 }
 
 // Search overlay functionality
@@ -54,7 +100,7 @@ function initializeSearch() {
     const searchClose = document.getElementById('searchClose');
     const mainSearch = document.getElementById('mainSearch');
 
-    if (searchToggle) {
+    if (searchToggle && searchOverlay) {
         searchToggle.addEventListener('click', function() {
             searchOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -80,9 +126,9 @@ function initializeSearch() {
 
     // Search submit
     const searchSubmit = document.querySelector('.search-submit');
-    if (searchSubmit) {
+    if (searchSubmit && mainSearch) {
         searchSubmit.addEventListener('click', function() {
-            const query = mainSearch ? mainSearch.value : '';
+            const query = mainSearch.value;
             if (query.trim()) {
                 window.location.href = `destinations.html?search=${encodeURIComponent(query)}`;
             }
@@ -112,38 +158,36 @@ function initializeSearch() {
     });
 }
 
-// Mobile menu functionality
+// Mobile menu functionality - FIXED VERSION
 function initializeMobileMenu() {
-    console.log('Mobile menu function called'); // Debug log
-    
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.querySelector('.nav-menu');
 
-    console.log('Menu toggle element:', menuToggle); // Debug log
-    console.log('Nav menu element:', navMenu); // Debug log
-
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', function(e) {
-            console.log('Menu button clicked!'); // Debug log
-            e.preventDefault();
             e.stopPropagation();
             
-            navMenu.classList.toggle('active');
-            this.classList.toggle('active');
+            // Toggle menu visibility
+            const isActive = !navMenu.classList.contains('active');
             
-            // Toggle body overflow
-            if (navMenu.classList.contains('active')) {
+            if (isActive) {
+                navMenu.classList.add('active');
+                menuToggle.classList.add('active');
                 document.body.style.overflow = 'hidden';
             } else {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
                 document.body.style.overflow = '';
             }
         });
 
-        // Close menu when clicking outside
+        // Close menu when clicking outside on mobile
         document.addEventListener('click', function(e) {
-            if (navMenu.classList.contains('active') && 
+            if (window.innerWidth <= 768 && 
+                navMenu.classList.contains('active') && 
                 !navMenu.contains(e.target) && 
                 !menuToggle.contains(e.target)) {
+                
                 navMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
                 document.body.style.overflow = '';
@@ -151,8 +195,20 @@ function initializeMobileMenu() {
         });
 
         // Close menu when clicking a link
-        navMenu.addEventListener('click', function(e) {
-            if (e.target.tagName === 'A') {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        
+        // Close menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
                 document.body.style.overflow = '';
@@ -161,17 +217,31 @@ function initializeMobileMenu() {
     }
 }
 
-// Newsletter form
-const newsletterForm = document.querySelector('.newsletter-form');
-if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = this.querySelector('.newsletter-input').value;
-        if (email) {
-            alert('Thank you for subscribing! We\'ll keep you updated with the latest from Kenya.');
-            this.reset();
-        }
-    });
+// Newsletter form initialization
+function initializeNewsletter() {
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('.newsletter-input');
+            const email = emailInput.value.trim();
+            
+            if (email && isValidEmail(email)) {
+                // Show success message
+                alert('Thank you for subscribing! We\'ll keep you updated with the latest from Kenya.');
+                emailInput.value = '';
+            } else {
+                alert('Please enter a valid email address.');
+                emailInput.focus();
+            }
+        });
+    }
+}
+
+// Email validation helper
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
 }
 
 // Open destination modal from homepage
@@ -179,7 +249,9 @@ function openDestinationModal(id) {
     const destination = destinationsData.find(d => d.id === id);
     if (!destination) return;
 
+    // Check if modal exists on current page
     const modal = document.getElementById('destinationModal');
+    
     if (!modal) {
         // If no modal on this page, navigate to destinations page
         window.location.href = `destinations.html?id=${id}`;
@@ -199,7 +271,7 @@ function openDestinationModal(id) {
                 </svg>
                 ${destination.location}
             </p>
-            <p class="modal-description-large">${destination.longDescription}</p>
+            <p class="modal-description-large">${destination.longDescription || destination.description}</p>
             
             <div class="modal-info-grid">
                 <div class="modal-info-item">
@@ -210,15 +282,15 @@ function openDestinationModal(id) {
                     <h4>Category</h4>
                     <p>${destination.category.charAt(0).toUpperCase() + destination.category.slice(1)}</p>
                 </div>
+                <div class="modal-info-item">
+                    <h4>Activities</h4>
+                    <p>${destination.activities ? destination.activities.join(' • ') : 'Various activities available'}</p>
+                </div>
             </div>
 
-            <div class="modal-info-item">
-                <h4>Popular activities</h4>
-                <p>${destination.activities.join(' • ')}</p>
-            </div>
-
-            <div style="margin-top: 32px;">
+            <div style="margin-top: 32px; display: flex; gap: 16px;">
                 <a href="plan.html" class="btn btn-primary">Plan your visit</a>
+                <a href="destinations.html?id=${destination.id}" class="btn btn-secondary">View details</a>
             </div>
         </div>
     `;
@@ -227,24 +299,46 @@ function openDestinationModal(id) {
     document.body.style.overflow = 'hidden';
 }
 
-// Close modal
-const modalClose = document.getElementById('modalClose');
-if (modalClose) {
-    modalClose.addEventListener('click', function() {
-        const modal = document.getElementById('destinationModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
+// Close modal functionality
+function initializeModal() {
+    const modalClose = document.getElementById('modalClose');
+    if (modalClose) {
+        modalClose.addEventListener('click', function() {
+            const modal = document.getElementById('destinationModal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    // Close modal on overlay click
+    const modalOverlay = document.querySelector('.modal-overlay');
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', function() {
+            const modal = document.getElementById('destinationModal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('destinationModal');
+            if (modal && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
     });
 }
 
-// Close modal on overlay click
-const modalOverlay = document.querySelector('.modal-overlay');
-if (modalOverlay) {
-    modalOverlay.addEventListener('click', function() {
-        const modal = document.getElementById('destinationModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    });
+// Initialize modal functionality if modal exists
+if (document.getElementById('destinationModal')) {
+    initializeModal();
 }
 
 // Smooth scrolling for anchor links
@@ -261,5 +355,55 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 block: 'start'
             });
         }
+    });
+});
+
+// Lazy load images for better performance
+function initializeLazyLoading() {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback for older browsers
+        images.forEach(img => {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+        });
+    }
+}
+
+// Initialize lazy loading
+initializeLazyLoading();
+
+// Add loading animation removal
+window.addEventListener('load', function() {
+    // Remove any loading animations
+    const loaders = document.querySelectorAll('.loading, .skeleton');
+    loaders.forEach(loader => {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            if (loader.parentNode) {
+                loader.parentNode.removeChild(loader);
+            }
+        }, 300);
+    });
+    
+    // Initialize animations for cards
+    const cards = document.querySelectorAll('.destination-card, .inspiration-card, .quick-link-card--bg');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.classList.add('animate-in');
     });
 });
