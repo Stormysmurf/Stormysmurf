@@ -1366,6 +1366,24 @@ body {
         transform: rotate(-45deg) translate(6px, -6px);
     }
 }
+/* Animation for cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.destination-card,
+.inspiration-card,
+.quick-link-card--bg {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
 
 /* Prevent body scroll when menu is open */
 body.menu-open {
