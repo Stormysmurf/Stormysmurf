@@ -53,76 +53,39 @@ function renderFeaturedDestinations() {
     `).join('');
 }
 
-// Initialize quick link cards with background images
+// Initialize quick link cards with background images - CLEANED VERSION
 function initializeQuickLinks() {
     const quickLinkCards = document.querySelectorAll('.quick-link-card--bg');
     
     if (quickLinkCards.length === 0) {
-        console.warn('No .quick-link-card--bg elements found');
-        return;
+        return; // No cards found, exit
     }
     
-    console.log(`Found ${quickLinkCards.length} quick link cards to initialize`);
-    
-    quickLinkCards.forEach((card, index) => {
+    quickLinkCards.forEach((card) => {
         const bgImage = card.getAttribute('data-bg');
-        console.log(`Card ${index}: data-bg="${bgImage}"`);
         
         if (bgImage) {
-            // Ensure card has basic styling
-            card.style.display = 'block';
-            card.style.position = 'relative';
-            card.style.minHeight = '200px';
-            card.style.borderRadius = '12px';
-            card.style.overflow = 'hidden';
-            card.style.boxShadow = '0 2px 4px rgba(0,0,0,0.08)';
-            
-            // Apply background image
+            // Set the background image - let CSS handle the styling
             card.style.backgroundImage = `url('${bgImage}')`;
-            card.style.backgroundSize = 'cover';
-            card.style.backgroundPosition = 'center';
-            card.style.backgroundRepeat = 'no-repeat';
             
-            // Set fallback color
-            card.style.backgroundColor = '#006747';
-            
-            // Debug: Add border to see card boundaries
-            card.style.border = '2px solid red'; // Remove this after debugging
-            
-            console.log(`Applied background image to card ${index}: ${bgImage}`);
-            
-            // Preload image
+            // Preload image for better UX
             const img = new Image();
             img.src = bgImage;
+            
             img.onload = () => {
-                console.log(`✓ Image loaded: ${bgImage}`);
-                card.style.border = 'none'; // Remove debug border
-                card.style.backgroundColor = 'transparent';
+                // Image loaded successfully
                 card.style.opacity = '1';
             };
+            
             img.onerror = () => {
-                console.error(`✗ Failed to load image: ${bgImage}`);
-                // Keep fallback color
-                card.style.border = '2px solid orange'; // Error border
-                card.style.backgroundColor = '#006747';
+                console.warn(`Failed to load image: ${bgImage}`);
+                // If image fails, fallback will use CSS background-color
                 card.style.backgroundImage = 'none';
             };
-        } else {
-            console.warn(`Card ${index} has no data-bg attribute`);
-            card.style.backgroundColor = '#006747'; // Fallback color
-        }
-        
-        // Ensure overlay exists
-        let overlay = card.querySelector('.quick-link-card__overlay');
-        if (!overlay) {
-            console.warn(`Card ${index} missing overlay, creating one`);
-            overlay = document.createElement('div');
-            overlay.className = 'quick-link-card__overlay';
-            const h3 = card.querySelector('h3') || document.createElement('h3');
-            const p = card.querySelector('p') || document.createElement('p');
-            overlay.appendChild(h3);
-            overlay.appendChild(p);
-            card.appendChild(overlay);
+            
+            // Set initial opacity for loading effect
+            card.style.opacity = '0.9';
+            card.style.transition = 'opacity 0.3s ease';
         }
     });
 }
@@ -192,7 +155,7 @@ function initializeSearch() {
     });
 }
 
-// Mobile menu functionality - FIXED VERSION
+// Mobile menu functionality
 function initializeMobileMenu() {
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.querySelector('.nav-menu');
