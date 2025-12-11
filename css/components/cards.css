@@ -291,20 +291,3 @@
     }
 }
 
-/* ========== BACKGROUND IMAGES FOR TESTING ========== */
-/* TEMPORARY - Remove this after adding JavaScript or inline styles */
-.quick-link-card--bg[data-bg="assets/index/index1.webp"] {
-    background-image: url('../../assets/index/index1.webp');
-}
-.quick-link-card--bg[data-bg="assets/index/index2.webp"] {
-    background-image: url('../../assets/index/index2.webp');
-}
-.quick-link-card--bg[data-bg="assets/index/index3.webp"] {
-    background-image: url('../../assets/index/index3.webp');
-}
-.quick-link-card--bg[data-bg="assets/index/index4.webp"] {
-    background-image: url('../../assets/index/index4.webp');
-}
-.quick-link-card--bg[data-bg="assets/index/index5.webp"] {
-    background-image: url('../../assets/index/index5.webp');
-}
