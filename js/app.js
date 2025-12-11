@@ -57,39 +57,73 @@ function renderFeaturedDestinations() {
 function initializeQuickLinks() {
     const quickLinkCards = document.querySelectorAll('.quick-link-card--bg');
     
-    quickLinkCards.forEach(card => {
+    if (quickLinkCards.length === 0) {
+        console.warn('No .quick-link-card--bg elements found');
+        return;
+    }
+    
+    console.log(`Found ${quickLinkCards.length} quick link cards to initialize`);
+    
+    quickLinkCards.forEach((card, index) => {
         const bgImage = card.getAttribute('data-bg');
+        console.log(`Card ${index}: data-bg="${bgImage}"`);
+        
         if (bgImage) {
-            // Apply background image immediately
-            card.style.backgroundImage = `url('${bgImage}')`;
+            // Ensure card has basic styling
+            card.style.display = 'block';
+            card.style.position = 'relative';
+            card.style.minHeight = '200px';
+            card.style.borderRadius = '12px';
+            card.style.overflow = 'hidden';
+            card.style.boxShadow = '0 2px 4px rgba(0,0,0,0.08)';
             
-            // Preload image for better performance
+            // Apply background image
+            card.style.backgroundImage = `url('${bgImage}')`;
+            card.style.backgroundSize = 'cover';
+            card.style.backgroundPosition = 'center';
+            card.style.backgroundRepeat = 'no-repeat';
+            
+            // Set fallback color
+            card.style.backgroundColor = '#006747';
+            
+            // Debug: Add border to see card boundaries
+            card.style.border = '2px solid red'; // Remove this after debugging
+            
+            console.log(`Applied background image to card ${index}: ${bgImage}`);
+            
+            // Preload image
             const img = new Image();
             img.src = bgImage;
             img.onload = () => {
-                card.style.backgroundImage = `url('${bgImage}')`;
+                console.log(`✓ Image loaded: ${bgImage}`);
+                card.style.border = 'none'; // Remove debug border
+                card.style.backgroundColor = 'transparent';
                 card.style.opacity = '1';
             };
             img.onerror = () => {
-                console.warn(`Failed to load image: ${bgImage}`);
-                // Fallback color
+                console.error(`✗ Failed to load image: ${bgImage}`);
+                // Keep fallback color
+                card.style.border = '2px solid orange'; // Error border
                 card.style.backgroundColor = '#006747';
-                card.style.opacity = '1';
+                card.style.backgroundImage = 'none';
             };
-            
-            // Set initial opacity
-            card.style.opacity = '0.8';
-            card.style.transition = 'opacity 0.3s ease';
+        } else {
+            console.warn(`Card ${index} has no data-bg attribute`);
+            card.style.backgroundColor = '#006747'; // Fallback color
         }
         
-        // Add hover effect
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
+        // Ensure overlay exists
+        let overlay = card.querySelector('.quick-link-card__overlay');
+        if (!overlay) {
+            console.warn(`Card ${index} missing overlay, creating one`);
+            overlay = document.createElement('div');
+            overlay.className = 'quick-link-card__overlay';
+            const h3 = card.querySelector('h3') || document.createElement('h3');
+            const p = card.querySelector('p') || document.createElement('p');
+            overlay.appendChild(h3);
+            overlay.appendChild(p);
+            card.appendChild(overlay);
+        }
     });
 }
 
