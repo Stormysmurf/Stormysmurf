@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visit Kenya - Official Guide to Kenya</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/plan.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
@@ -202,6 +204,91 @@
             </div>
         </div>
     </section>
+<!-- ============================================
+     AI ITINERARY GENERATOR SECTION
+     Add this section AFTER your existing plan form section
+     and BEFORE the Resources Section
+     ============================================ -->
+
+<section class="itinerary-generator-section">
+    <div class="container">
+        <div class="generator-header">
+            <h2>🤖 AI Itinerary Generator</h2>
+            <p>Get a personalized Kenya itinerary crafted instantly</p>
+        </div>
+
+        <div class="generator-container">
+            <!-- Generator Form -->
+            <div class="generator-form-panel">
+                <h3>🎯 Your Preferences</h3>
+                <form id="itineraryGeneratorForm">
+                    <div class="generator-form-group">
+                        <label for="gen-duration">Trip Duration</label>
+                        <select id="gen-duration" required>
+                            <option value="">Select duration</option>
+                            <option value="3">3 days - Weekend Escape</option>
+                            <option value="5">5 days - Quick Adventure</option>
+                            <option value="7">7 days - Classic Tour</option>
+                            <option value="10">10 days - Extended Safari</option>
+                            <option value="14">14 days - Grand Experience</option>
+                        </select>
+                    </div>
+
+                    <div class="generator-form-group">
+                        <label for="gen-interest">Primary Interest</label>
+                        <select id="gen-interest" required>
+                            <option value="">Select interest</option>
+                            <option value="wildlife">🦁 Wildlife Safari</option>
+                            <option value="beach">🏖️ Beach & Relaxation</option>
+                            <option value="culture">🎭 Cultural Experience</option>
+                            <option value="adventure">⛰️ Adventure & Hiking</option>
+                            <option value="luxury">✨ Luxury Experience</option>
+                            <option value="mixed">🌟 Mix of Everything</option>
+                        </select>
+                    </div>
+
+                    <div class="generator-form-group">
+                        <label for="gen-budget">Budget Level</label>
+                        <select id="gen-budget" required>
+                            <option value="">Select budget</option>
+                            <option value="budget">💰 Budget ($50-100/day)</option>
+                            <option value="mid">💳 Mid-range ($100-250/day)</option>
+                            <option value="luxury">💎 Luxury ($250+/day)</option>
+                        </select>
+                    </div>
+
+                    <div class="generator-form-group">
+                        <label for="gen-travelers">Number of Travelers</label>
+                        <input type="number" id="gen-travelers" min="1" max="20" value="2" required>
+                    </div>
+
+                    <div class="generator-form-group">
+                        <label for="gen-season">Travel Season</label>
+                        <select id="gen-season" required>
+                            <option value="">Select season</option>
+                            <option value="dry">☀️ Dry Season (Jan-Mar, Jun-Oct)</option>
+                            <option value="wet">🌧️ Wet Season (Apr-May, Nov-Dec)</option>
+                            <option value="migration">🦓 Great Migration (Jul-Oct)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="generate-itinerary-btn" id="generateItineraryBtn">
+                        ✨ Generate My Itinerary
+                    </button>
+                </form>
+            </div>
+
+            <!-- Generator Output -->
+            <div class="generator-output-panel" id="itineraryOutput">
+                <div class="generator-empty-state">
+                    <div class="generator-empty-state-icon">🗺️</div>
+                    <h3>Ready to Plan Your Adventure?</h3>
+                    <p>Fill in your preferences and click "Generate My Itinerary" to get started!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Newsletter Section -->
     <section class="newsletter-section">
@@ -290,6 +377,7 @@
 
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/itinerary-generator.js"></script>
 <!-- Destination Modal -->
 <div class="modal" id="destinationModal">
     <div class="modal-overlay"></div>
