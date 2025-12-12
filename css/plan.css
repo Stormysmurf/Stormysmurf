@@ -1,0 +1,427 @@
+/* ============================================
+   AI ITINERARY GENERATOR STYLES
+   Add this to your existing CSS file
+   ============================================ */
+
+/* Itinerary Generator Section */
+.itinerary-generator-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.generator-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.generator-header h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.generator-header p {
+    font-size: 1.1em;
+    color: var(--text-gray);
+}
+
+.generator-container {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Generator Form Panel */
+.generator-form-panel {
+    background: var(--white);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.generator-form-panel h3 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.generator-form-group {
+    margin-bottom: 20px;
+}
+
+.generator-form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    font-size: 0.95em;
+}
+
+.generator-form-group select,
+.generator-form-group input[type="number"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    font-family: 'Open Sans', sans-serif;
+    background: white;
+}
+
+.generator-form-group select:focus,
+.generator-form-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 103, 71, 0.1);
+}
+
+.generate-itinerary-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #004d35 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    margin-top: 10px;
+}
+
+.generate-itinerary-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.generate-itinerary-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Output Panel */
+.generator-output-panel {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    min-height: 600px;
+}
+
+/* Empty State */
+.generator-empty-state {
+    text-align: center;
+    padding: 80px 40px;
+    color: var(--text-gray);
+}
+
+.generator-empty-state-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+.generator-empty-state h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+/* Loading State */
+.generator-loading {
+    text-align: center;
+    padding: 60px 40px;
+}
+
+.generator-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: generator-spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes generator-spin {
+    to { transform: rotate(360deg); }
+}
+
+.generator-loading-text {
+    color: var(--text-gray);
+    font-size: 1.1em;
+}
+
+/* Itinerary Content */
+.itinerary-content {
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.itinerary-header-section {
+    text-align: center;
+    padding-bottom: 30px;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 35px;
+}
+
+.itinerary-header-section h3 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.itinerary-meta-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.itinerary-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-gray);
+    font-size: 0.95em;
+    padding: 8px 16px;
+    background: var(--bg-light);
+    border-radius: 20px;
+}
+
+.itinerary-meta-item span:first-child {
+    font-size: 1.2em;
+}
+
+/* Day Sections */
+.itinerary-day-section {
+    margin-bottom: 40px;
+    padding: 30px;
+    background: linear-gradient(to right, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+    animation: slideInLeft 0.5s ease;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.day-header-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.day-number-badge {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #004d35 100%);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.3em;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.day-title-text {
+    color: var(--text-dark);
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+/* Activities */
+.itinerary-activity {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.itinerary-activity:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-md);
+}
+
+.itinerary-activity:last-child {
+    margin-bottom: 0;
+}
+
+.activity-time-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    background: var(--secondary-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.activity-title-text {
+    font-size: 1.15em;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.activity-icon {
+    font-size: 1.3em;
+}
+
+.activity-description-text {
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+/* Tips Section */
+.itinerary-tips-section {
+    margin-top: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.itinerary-tips-section h4 {
+    color: var(--primary-color);
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.itinerary-tips-list {
+    list-style: none;
+    padding: 0;
+}
+
+.itinerary-tips-list li {
+    padding: 12px 0;
+    padding-left: 35px;
+    position: relative;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.itinerary-tips-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* Action Buttons */
+.itinerary-action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+    padding-top: 30px;
+    border-top: 2px solid var(--border-color);
+}
+
+.itinerary-action-btn {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.itinerary-action-btn.primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #004d35 100%);
+    color: white;
+}
+
+.itinerary-action-btn.secondary {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.itinerary-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .generator-container {
+        grid-template-columns: 1fr;
+    }
+
+    .generator-form-panel {
+        position: static;
+    }
+
+    .generator-header h2 {
+        font-size: 2em;
+    }
+
+    .generator-output-panel {
+        padding: 24px;
+    }
+
+    .itinerary-meta-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .day-number-badge {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1em;
+    }
+
+    .day-title-text {
+        font-size: 1.3em;
+    }
+}
