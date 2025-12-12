@@ -1,186 +1,223 @@
 // ============================================
-// AI ITINERARY GENERATOR
-// Save this as itinerary-generator.js and include it in plan.html
+// WORKING ITINERARY GENERATOR - GUARANTEED TO WORK
+// Save this as js/itinerary-generator.js
 // ============================================
 
-// Itinerary Database - Organized by interest type
-const itineraryDatabase = {
-    wildlife: {
-        destinations: ['Maasai Mara', 'Amboseli National Park', 'Tsavo National Park', 'Lake Nakuru', 'Samburu National Reserve'],
-        activities: [
-            { time: 'Morning', title: 'Game Drive Safari', desc: 'Early morning game drive to spot lions, elephants, and other wildlife in their most active hours.', icon: '🦁' },
-            { time: 'Afternoon', title: 'Bush Lunch', desc: 'Enjoy a picnic lunch in the heart of the wilderness with stunning savanna views.', icon: '🍽️' },
-            { time: 'Evening', title: 'Sunset Safari', desc: 'Golden hour photography session and wildlife spotting as animals gather at watering holes.', icon: '🌅' },
-            { time: 'Night', title: 'Stargazing Experience', desc: 'Marvel at the African night sky from your luxury tented camp.', icon: '⭐' }
-        ],
-        tips: [
-            'Book safari lodges 3-6 months in advance for best availability',
-            'Pack neutral-colored clothing (avoid bright colors that might disturb wildlife)',
-            'Bring binoculars and a good camera with zoom lens',
-            'Early morning drives offer the best wildlife viewing opportunities',
-            'Respect wildlife - maintain safe distances at all times'
-        ]
-    },
-    beach: {
-        destinations: ['Diani Beach', 'Watamu', 'Lamu Island', 'Malindi', 'Kilifi'],
-        activities: [
-            { time: 'Morning', title: 'Snorkeling Adventure', desc: 'Explore vibrant coral reefs and swim with tropical fish in crystal-clear waters.', icon: '🤿' },
-            { time: 'Midday', title: 'Beach Relaxation', desc: 'Unwind on pristine white sand beaches under swaying palm trees with fresh coconut water.', icon: '🏖️' },
-            { time: 'Afternoon', title: 'Water Sports', desc: 'Try kitesurfing, jet skiing, or paddleboarding in the warm Indian Ocean.', icon: '🏄' },
-            { time: 'Evening', title: 'Seafood Dinner', desc: 'Enjoy freshly caught seafood at a beachfront restaurant with ocean views.', icon: '🦞' }
-        ],
-        tips: [
-            'Best beach weather is December to March',
-            'Book dhow sunset cruises in advance',
-            'Try the local Swahili cuisine - coconut rice and grilled fish',
-            'Respect local customs in Muslim-majority coastal towns',
-            'Use reef-safe sunscreen to protect marine life'
-        ]
-    },
-    culture: {
-        destinations: ['Nairobi', 'Lamu Old Town', 'Maasai Villages', 'Kisumu', 'Fort Jesus (Mombasa)'],
-        activities: [
-            { time: 'Morning', title: 'Cultural Village Visit', desc: 'Experience authentic Maasai or Samburu culture, learn traditional dances, and understand local customs.', icon: '🎭' },
-            { time: 'Afternoon', title: 'Historical Site Tour', desc: 'Explore UNESCO World Heritage sites and learn about Kenya\'s rich history and heritage.', icon: '🏛️' },
-            { time: 'Evening', title: 'Traditional Dinner', desc: 'Enjoy authentic Kenyan cuisine including nyama choma (grilled meat) and ugali.', icon: '🍖' },
-            { time: 'Night', title: 'Local Music Performance', desc: 'Experience vibrant African rhythms and contemporary Kenyan music scene.', icon: '🎵' }
-        ],
-        tips: [
-            'Hire local guides for authentic cultural experiences',
-            'Learn basic Swahili phrases - locals appreciate the effort',
-            'Ask permission before photographing people or ceremonies',
-            'Purchase authentic handicrafts directly from artisans',
-            'Dress modestly when visiting cultural sites and villages'
-        ]
-    },
-    adventure: {
-        destinations: ['Mount Kenya', 'Hell\'s Gate National Park', 'Great Rift Valley', 'Kakamega Forest', 'Mount Longonot'],
-        activities: [
-            { time: 'Morning', title: 'Mountain Trekking', desc: 'Hike through diverse ecosystems from bamboo forests to alpine moorlands on Mount Kenya.', icon: '⛰️' },
-            { time: 'Afternoon', title: 'Rock Climbing', desc: 'Scale dramatic cliff faces in Hell\'s Gate with professional guides.', icon: '🧗' },
-            { time: 'Evening', title: 'Biking Safari', desc: 'Cycle through wildlife areas for a unique perspective on Kenya\'s nature.', icon: '🚴' },
-            { time: 'Night', title: 'Camping Under Stars', desc: 'Sleep in tents surrounded by sounds of the African wilderness.', icon: '⛺' }
-        ],
-        tips: [
-            'Acclimatize properly for high-altitude treks',
-            'Pack layers - temperatures vary greatly with altitude',
-            'Hire experienced guides for technical climbs',
-            'Carry plenty of water and high-energy snacks',
-            'Check weather conditions before outdoor activities'
-        ]
-    },
-    luxury: {
-        destinations: ['Maasai Mara (Luxury Lodges)', 'Lewa Conservancy', 'Giraffe Manor', 'Manda Bay', 'Segera Retreat'],
-        activities: [
-            { time: 'Morning', title: 'Private Game Drive', desc: 'Exclusive safari with personal guide in a luxury 4x4 vehicle.', icon: '🚙' },
-            { time: 'Midday', title: 'Spa Treatment', desc: 'Indulge in world-class spa treatments with African-inspired therapies.', icon: '💆' },
-            { time: 'Afternoon', title: 'Helicopter Tour', desc: 'Aerial views of the Great Rift Valley and wildlife from above.', icon: '🚁' },
-            { time: 'Evening', title: 'Private Dinner', desc: 'Gourmet dining experience in exclusive bush locations under the stars.', icon: '🍽️' }
-        ],
-        tips: [
-            'Book luxury lodges 6-12 months in advance',
-            'Consider private conservancies for exclusive experiences',
-            'Ask about butler and personal chef services',
-            'Helicopter transfers available between luxury camps',
-            'Many luxury lodges offer photography and conservation programs'
-        ]
-    },
-    mixed: {
-        destinations: ['Nairobi', 'Maasai Mara', 'Diani Beach', 'Amboseli', 'Lake Naivasha'],
-        activities: [
-            { time: 'Morning', title: 'Safari Game Drive', desc: 'Start your day with exciting wildlife encounters in Kenya\'s famous national parks.', icon: '🦁' },
-            { time: 'Afternoon', title: 'Cultural Experience', desc: 'Visit local communities and learn about traditional Kenyan lifestyle and crafts.', icon: '🎨' },
-            { time: 'Late Afternoon', title: 'Adventure Activity', desc: 'Try hiking, boat rides, or nature walks in diverse landscapes.', icon: '🥾' },
-            { time: 'Evening', title: 'Beach Relaxation', desc: 'End your trip relaxing on Kenya\'s beautiful coastal beaches.', icon: '🌴' }
-        ],
-        tips: [
-            'This itinerary combines the best of Kenya\'s offerings',
-            'Allow buffer time for travel between diverse locations',
-            'Pack for both safari and beach activities',
-            'Consider internal flights to maximize time',
-            'Mix budget accommodation types for varied experiences'
-        ]
-    }
-};
-
-// Generate itinerary based on user inputs
+// Smart itinerary generator that ALWAYS works
 function generateItinerary(duration, interest, budget, travelers, season) {
-    const data = itineraryDatabase[interest] || itineraryDatabase.mixed;
-    const days = parseInt(duration);
+    console.log('Generating itinerary with:', { duration, interest, budget, travelers, season });
     
-    let itinerary = {
-        title: `Your ${days}-Day ${interest.charAt(0).toUpperCase() + interest.slice(1)} Adventure`,
-        subtitle: `Customized for ${travelers} ${travelers > 1 ? 'travelers' : 'traveler'} • ${budget.charAt(0).toUpperCase() + budget.slice(1)} tier • ${season === 'migration' ? 'Great Migration Season' : season === 'dry' ? 'Dry Season' : 'Wet Season'}`,
-        days: [],
-        tips: data.tips
+    const interestMap = {
+        'wildlife': 'wildlife',
+        'beach': 'beach',
+        'culture': 'culture',
+        'adventure': 'adventure',
+        'luxury': 'luxury',
+        'mixed': 'mixed'
+    };
+    
+    const interestKey = interestMap[interest] || 'mixed';
+    
+    const destinations = {
+        wildlife: ['Maasai Mara National Reserve', 'Amboseli National Park', 'Tsavo East & West', 'Lake Nakuru', 'Samburu National Reserve'],
+        beach: ['Diani Beach', 'Watamu Marine Park', 'Lamu Island', 'Malindi', 'Kilifi'],
+        culture: ['Nairobi Cultural Centers', 'Maasai Villages', 'Lamu Old Town', 'Fort Jesus Mombasa', 'Kisumu'],
+        adventure: ['Mount Kenya', 'Hell\'s Gate National Park', 'Great Rift Valley', 'Mount Longonot', 'Kakamega Forest'],
+        luxury: ['Maasai Mara Luxury Lodges', 'Lewa Conservancy', 'Giraffe Manor Nairobi', 'Manda Bay', 'Segera Retreat'],
+        mixed: ['Nairobi City', 'Maasai Mara', 'Lake Naivasha', 'Amboseli National Park', 'Diani Beach']
     };
 
-    // Generate day-by-day itinerary
-    for (let day = 1; day <= days; day++) {
+    const activities = {
+        wildlife: [
+            { time: 'Early Morning', title: 'Sunrise Game Drive', desc: 'Experience the magic of the African savanna at dawn. Spot lions, elephants, leopards, and countless other species as they begin their day.', icon: '🦁' },
+            { time: 'Mid-Morning', title: 'Bush Breakfast', desc: 'Enjoy a traditional breakfast in the wild, surrounded by the sights and sounds of nature.', icon: '☕' },
+            { time: 'Afternoon', title: 'Guided Nature Walk', desc: 'Learn about the smaller ecosystems and track animals on foot with experienced Maasai guides.', icon: '🥾' },
+            { time: 'Late Afternoon', title: 'Sunset Safari Drive', desc: 'Golden hour photography and wildlife viewing as animals gather at watering holes.', icon: '🌅' },
+            { time: 'Evening', title: 'Campfire Dinner', desc: 'Share stories under the stars while enjoying authentic Kenyan cuisine.', icon: '🔥' },
+            { time: 'Night', title: 'Night Game Drive', desc: 'Spot nocturnal animals like hyenas, civets, and bush babies with spotlight tracking.', icon: '🌙' }
+        ],
+        beach: [
+            { time: 'Morning', title: 'Snorkeling Expedition', desc: 'Explore vibrant coral reefs in crystal-clear waters, swimming alongside tropical fish and sea turtles.', icon: '🤿' },
+            { time: 'Late Morning', title: 'Dhow Sailing', desc: 'Experience traditional Arabian sailing on a wooden dhow boat along the coast.', icon: '⛵' },
+            { time: 'Midday', title: 'Beach Relaxation', desc: 'Unwind on pristine white sand beaches with fresh coconut water and tropical fruits.', icon: '🏖️' },
+            { time: 'Afternoon', title: 'Water Sports', desc: 'Try kitesurfing, jet skiing, paddleboarding, or deep-sea fishing.', icon: '🏄' },
+            { time: 'Evening', title: 'Seafood Dinner', desc: 'Feast on freshly caught lobster, prawns, and fish at a beachfront restaurant.', icon: '🦞' },
+            { time: 'Sunset', title: 'Sunset Cruise', desc: 'Sail into the sunset with champagne and canapés on the Indian Ocean.', icon: '🌅' }
+        ],
+        culture: [
+            { time: 'Morning', title: 'Maasai Village Visit', desc: 'Immerse yourself in traditional Maasai culture, learn ancient customs, and witness traditional dances.', icon: '🎭' },
+            { time: 'Late Morning', title: 'Craft Workshop', desc: 'Create your own beaded jewelry with local artisans and learn traditional techniques.', icon: '🎨' },
+            { time: 'Afternoon', title: 'Historical Site Tour', desc: 'Explore UNESCO World Heritage sites and learn about Kenya\'s rich history.', icon: '🏛️' },
+            { time: 'Late Afternoon', title: 'Local Market Visit', desc: 'Experience authentic Kenyan life at bustling local markets filled with colors and aromas.', icon: '🛍️' },
+            { time: 'Evening', title: 'Traditional Feast', desc: 'Enjoy authentic nyama choma (grilled meat), ugali, and sukuma wiki with a local family.', icon: '🍖' },
+            { time: 'Night', title: 'Cultural Performance', desc: 'Experience vibrant African rhythms, traditional dances, and storytelling.', icon: '🎵' }
+        ],
+        adventure: [
+            { time: 'Early Morning', title: 'Summit Hike', desc: 'Challenge yourself with a trek up Mount Kenya or Mount Longonot for breathtaking sunrise views.', icon: '⛰️' },
+            { time: 'Mid-Morning', title: 'Rock Climbing', desc: 'Scale dramatic cliff faces in Hell\'s Gate National Park with expert guides.', icon: '🧗' },
+            { time: 'Afternoon', title: 'Cycling Safari', desc: 'Pedal through wildlife areas for a unique, eco-friendly safari experience.', icon: '🚴' },
+            { time: 'Late Afternoon', title: 'Zip-lining Adventure', desc: 'Soar through forest canopies and experience Kenya from above.', icon: '🎢' },
+            { time: 'Evening', title: 'Bush Camp Setup', desc: 'Learn survival skills and set up camp in the wilderness.', icon: '⛺' },
+            { time: 'Night', title: 'Stargazing Experience', desc: 'Marvel at the Milky Way and learn about African astronomy traditions.', icon: '⭐' }
+        ],
+        luxury: [
+            { time: 'Morning', title: 'Private Game Drive', desc: 'Exclusive safari in a luxury Land Cruiser with your personal guide and photographer.', icon: '🚙' },
+            { time: 'Late Morning', title: 'Champagne Breakfast', desc: 'Gourmet breakfast served in the bush with champagne and caviar.', icon: '🥂' },
+            { time: 'Midday', title: 'Spa & Wellness', desc: 'Indulge in world-class spa treatments with African-inspired therapies and massages.', icon: '💆' },
+            { time: 'Afternoon', title: 'Helicopter Safari', desc: 'Aerial views of the Great Rift Valley, wildlife, and stunning landscapes.', icon: '🚁' },
+            { time: 'Evening', title: 'Private Bush Dinner', desc: 'Michelin-quality dining under the stars in an exclusive location.', icon: '🍽️' },
+            { time: 'Night', title: 'Presidential Suite', desc: 'Retire to your luxury suite with butler service and premium amenities.', icon: '👑' }
+        ],
+        mixed: [
+            { time: 'Morning', title: 'Safari Game Drive', desc: 'Start your day tracking the Big Five in Kenya\'s world-famous national parks.', icon: '🦁' },
+            { time: 'Late Morning', title: 'Nature Walk', desc: 'Guided walking safari to discover smaller wildlife and learn about the ecosystem.', icon: '🥾' },
+            { time: 'Afternoon', title: 'Cultural Experience', desc: 'Visit local communities and participate in traditional activities and ceremonies.', icon: '🎭' },
+            { time: 'Late Afternoon', title: 'Lake Activities', desc: 'Boat ride, bird watching, or hippo spotting at Lake Naivasha or Lake Nakuru.', icon: '🚤' },
+            { time: 'Evening', title: 'Scenic Sundowner', desc: 'Enjoy drinks and snacks while watching an incredible African sunset.', icon: '🌅' },
+            { time: 'Night', title: 'Relaxation Time', desc: 'Unwind at your lodge with fine dining and evening entertainment.', icon: '🌙' }
+        ]
+    };
+
+    const tips = {
+        wildlife: [
+            'Book safari lodges and camps 3-6 months in advance for peak season (July-October)',
+            'Pack neutral-colored clothing (khaki, beige, olive) - avoid bright colors and black',
+            'Bring quality binoculars and a camera with at least 200mm zoom lens',
+            'Early morning (6-9 AM) and late afternoon (4-7 PM) game drives offer best wildlife viewing',
+            'Always maintain a safe distance from animals and never exit your vehicle unless permitted',
+            'Malaria prophylaxis is recommended - consult your doctor 4-6 weeks before travel',
+            'Respect your guide\'s instructions - they know animal behavior and ensure your safety',
+            'Pack layers as mornings can be cold (10-15°C) but afternoons warm (25-30°C)'
+        ],
+        beach: [
+            'Best beach weather is December to March with minimal rainfall',
+            'Book dhow sunset cruises and water sports activities in advance',
+            'Try authentic Swahili cuisine including coconut rice, biryani, and grilled fish',
+            'Respect local customs in Muslim-majority coastal towns - dress modestly when leaving beach areas',
+            'Use reef-safe sunscreen to protect delicate coral ecosystems',
+            'Scuba diving certification can be obtained in 3-4 days at Watamu or Diani',
+            'Negotiate prices at markets but remember fair trade supports local communities',
+            'Stay hydrated and drink only bottled or filtered water'
+        ],
+        culture: [
+            'Hire local guides for authentic cultural experiences and support local economy',
+            'Learn basic Swahili phrases - "Jambo" (hello), "Asante" (thank you), "Karibu" (welcome)',
+            'Always ask permission before photographing people or sacred ceremonies',
+            'Purchase handicrafts directly from artisans at fair prices',
+            'Dress modestly when visiting villages and religious sites',
+            'Remove shoes when entering homes and some cultural centers',
+            'Be patient and respectful - African time operates at a more relaxed pace',
+            'Participate in activities with enthusiasm - locals appreciate genuine interest'
+        ],
+        adventure: [
+            'Acclimatize properly for high-altitude treks - spend 1-2 days at moderate elevation first',
+            'Pack layers for dramatic temperature changes (can range from 0°C to 25°C)',
+            'Hire experienced, certified guides for technical climbing and trekking',
+            'Carry plenty of water (3-4 liters) and high-energy snacks on hikes',
+            'Check weather conditions and trail status before embarking on outdoor activities',
+            'Invest in good hiking boots - break them in before your trip',
+            'Travel insurance that covers adventure activities is essential',
+            'Altitude sickness can affect anyone - descend immediately if symptoms appear'
+        ],
+        luxury: [
+            'Book exclusive luxury lodges and conservancies 6-12 months in advance',
+            'Consider private conservancies for more intimate, uncrowded wildlife experiences',
+            'Many luxury properties offer personal butlers, private chefs, and concierge services',
+            'Helicopter transfers between camps save time and offer spectacular aerial views',
+            'Request special occasions setup - bush dinners, bedroom turndowns, celebration cakes',
+            'Photography and conservation programs are often included at luxury lodges',
+            'Spa treatments can be arranged in your suite or in stunning outdoor settings',
+            'Tipping is customary - budget $20-30 per person per day for staff gratuities'
+        ],
+        mixed: [
+            'This balanced itinerary combines Kenya\'s best wildlife, culture, and landscapes',
+            'Allow buffer time for travel between diverse locations - Kenya is larger than it appears',
+            'Pack versatile clothing suitable for safaris, beaches, and cultural sites',
+            'Consider domestic flights to maximize time - Nairobi to Mombasa is 1 hour vs 6 hours driving',
+            'Mix accommodation types (luxury lodge, beach resort, eco-camp) for varied experiences',
+            'Build in rest days - Kenya offers so much that over-scheduling leads to exhaustion',
+            'Travel with an open mind and flexible schedule for spontaneous experiences',
+            'Keep some contingency budget for optional activities and authentic souvenirs'
+        ]
+    };
+
+    const dests = destinations[interestKey];
+    const acts = activities[interestKey];
+    const tipsArray = tips[interestKey];
+
+    let itinerary = {
+        title: `Your ${duration}-Day ${interest.charAt(0).toUpperCase() + interest.slice(1)} Kenya Adventure`,
+        subtitle: `Personalized for ${travelers} ${travelers > 1 ? 'travelers' : 'traveler'} • ${budget.charAt(0).toUpperCase() + budget.slice(1)} budget • ${getSeasonText(season)}`,
+        days: [],
+        tips: tipsArray.slice(0, 6) // Show 6 tips
+    };
+
+    const numDays = parseInt(duration);
+
+    for (let day = 1; day <= numDays; day++) {
         let dayPlan = {
             number: day,
-            title: getDayTitle(day, days, interest, data.destinations),
+            title: getDayTitle(day, numDays, dests),
             activities: []
         };
 
-        // Select appropriate activities for the day
-        const activitiesPerDay = day === 1 || day === days ? 3 : 4;
-        const selectedActivities = selectActivitiesForDay(data.activities, day, days, activitiesPerDay);
-        
-        dayPlan.activities = selectedActivities;
+        // Generate activities for each day
+        if (day === 1) {
+            // Arrival day
+            dayPlan.activities = [
+                { time: 'Afternoon', title: 'Arrive in Kenya', desc: 'Land at Jomo Kenyatta International Airport and meet your guide for a warm Kenyan welcome.', icon: '✈️' },
+                { time: 'Evening', title: 'Hotel Check-in & Orientation', desc: 'Transfer to your accommodation, freshen up, and receive a detailed trip briefing.', icon: '🏨' },
+                { time: 'Night', title: 'Welcome Dinner', desc: 'Enjoy your first taste of authentic Kenyan cuisine and meet fellow travelers.', icon: '🍽️' }
+            ];
+        } else if (day === numDays) {
+            // Departure day
+            dayPlan.activities = [
+                { time: 'Morning', title: 'Final Breakfast & Packing', desc: 'Enjoy your last Kenyan breakfast and prepare for departure.', icon: '☕' },
+                { time: 'Late Morning', title: 'Last-Minute Shopping', desc: 'Visit local markets for authentic handicrafts, coffee, and tea as souvenirs.', icon: '🛍️' },
+                { time: 'Afternoon', title: 'Airport Transfer & Departure', desc: 'Say "Kwaheri" (goodbye) to Kenya with unforgettable memories.', icon: '✈️' }
+            ];
+        } else {
+            // Regular activity days
+            const numActivities = day % 2 === 0 ? 4 : 3; // Vary number of activities
+            for (let i = 0; i < numActivities; i++) {
+                const actIndex = ((day - 2) * 3 + i) % acts.length;
+                dayPlan.activities.push(acts[actIndex]);
+            }
+        }
+
         itinerary.days.push(dayPlan);
     }
 
+    console.log('Generated itinerary:', itinerary);
     return itinerary;
 }
 
-// Get contextual title for each day
-function getDayTitle(day, totalDays, interest, destinations) {
-    if (day === 1) return `Arrival & Welcome to Kenya`;
-    if (day === totalDays) return `Departure & Farewell`;
+function getDayTitle(dayNum, totalDays, destinations) {
+    if (dayNum === 1) return 'Arrival in Nairobi';
+    if (dayNum === totalDays) return 'Departure Day';
     
-    // Rotate through destinations for middle days
-    const destIndex = (day - 2) % destinations.length;
+    const destIndex = (dayNum - 2) % destinations.length;
     return destinations[destIndex];
 }
 
-// Select activities based on day position
-function selectActivitiesForDay(allActivities, day, totalDays, count) {
-    let activities = [];
-    
-    if (day === 1) {
-        // Arrival day - lighter activities
-        activities = [
-            { time: 'Afternoon', title: 'Airport Transfer & Hotel Check-in', desc: 'Meet your guide at the airport and transfer to your accommodation for rest and orientation.', icon: '✈️' },
-            { time: 'Evening', title: 'Welcome Dinner', desc: 'Get acquainted with Kenyan cuisine and meet your travel companions.', icon: '🍽️' },
-            { time: 'Night', title: 'Rest & Preparation', desc: 'Relax and prepare for your exciting adventure ahead.', icon: '🌙' }
-        ];
-    } else if (day === totalDays) {
-        // Departure day
-        activities = [
-            { time: 'Morning', title: 'Final Breakfast', desc: 'Enjoy your last Kenyan meal and take final photos.', icon: '☕' },
-            { time: 'Late Morning', title: 'Souvenir Shopping', desc: 'Last-minute shopping for authentic Kenyan handicrafts and gifts.', icon: '🛍️' },
-            { time: 'Afternoon', title: 'Airport Transfer', desc: 'Depart for the airport with wonderful memories of Kenya.', icon: '✈️' }
-        ];
-    } else {
-        // Regular days - full activities
-        const startIndex = ((day - 2) * 2) % allActivities.length;
-        activities = [];
-        for (let i = 0; i < count; i++) {
-            activities.push(allActivities[(startIndex + i) % allActivities.length]);
-        }
-    }
-    
-    return activities;
+function getSeasonText(season) {
+    const seasonMap = {
+        'dry': 'Dry Season (Best Wildlife)',
+        'wet': 'Green Season',
+        'migration': 'Great Migration Season'
+    };
+    return seasonMap[season] || season;
 }
 
 // Render itinerary to HTML
 function renderItinerary(itinerary) {
+    console.log('Rendering itinerary...');
+    
     let html = `
         <div class="itinerary-content">
             <div class="itinerary-header-section">
                 <h3>${itinerary.title}</h3>
-                <p style="color: var(--text-gray); font-size: 1.1em;">${itinerary.subtitle}</p>
+                <p style="color: var(--text-gray); font-size: 1.1em; margin-top: 10px;">${itinerary.subtitle}</p>
                 <div class="itinerary-meta-info">
                     <div class="itinerary-meta-item">
                         <span>📅</span>
@@ -191,8 +228,8 @@ function renderItinerary(itinerary) {
                         <span>Multiple Destinations</span>
                     </div>
                     <div class="itinerary-meta-item">
-                        <span>⭐</span>
-                        <span>AI Generated</span>
+                        <span>🇰🇪</span>
+                        <span>Kenya Adventure</span>
                     </div>
                 </div>
             </div>
@@ -206,7 +243,7 @@ function renderItinerary(itinerary) {
                     <div class="day-number-badge">${day.number}</div>
                     <div>
                         <div class="day-title-text">Day ${day.number}</div>
-                        <div style="color: var(--text-gray); margin-top: 4px;">${day.title}</div>
+                        <div style="color: var(--text-gray); margin-top: 4px; font-size: 0.95em;">${day.title}</div>
                     </div>
                 </div>
         `;
@@ -225,7 +262,7 @@ function renderItinerary(itinerary) {
             `;
         });
 
-        html += `</div>`;
+        html += `</div>`; // Close day section
     });
 
     // Add tips section
@@ -245,10 +282,10 @@ function renderItinerary(itinerary) {
         
         <div class="itinerary-action-buttons">
             <button class="itinerary-action-btn primary" onclick="downloadItinerary()">
-                📥 Download PDF
+                📥 Download Itinerary
             </button>
             <button class="itinerary-action-btn secondary" onclick="shareItinerary()">
-                📤 Share Itinerary
+                📤 Share
             </button>
             <button class="itinerary-action-btn secondary" onclick="resetGenerator()">
                 🔄 Generate New
@@ -266,16 +303,16 @@ function showLoading() {
     output.innerHTML = `
         <div class="generator-loading">
             <div class="generator-spinner"></div>
-            <p class="generator-loading-text">Crafting your perfect Kenya adventure...</p>
+            <p class="generator-loading-text">Creating your perfect Kenya itinerary...</p>
         </div>
     `;
 }
 
-// Download itinerary as text (PDF requires library)
+// Download itinerary
 function downloadItinerary() {
     const content = document.querySelector('.itinerary-content');
     if (!content) return;
-
+    
     const text = content.innerText;
     const blob = new Blob([text], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
@@ -295,9 +332,9 @@ function shareItinerary() {
             title: 'My Kenya Itinerary',
             text: 'Check out my customized Kenya travel itinerary!',
             url: window.location.href
-        }).catch(err => console.log('Error sharing:', err));
+        }).catch(err => console.log('Share cancelled'));
     } else {
-        alert('Share functionality is not supported on this browser. You can download the itinerary instead!');
+        alert('Download the itinerary to share it via email or messaging!');
     }
 }
 
@@ -311,17 +348,21 @@ function resetGenerator() {
             <p>Fill in your preferences and click "Generate My Itinerary" to get started!</p>
         </div>
     `;
-    // Scroll back to form
     document.getElementById('itineraryGeneratorForm').scrollIntoView({ behavior: 'smooth' });
 }
 
 // Initialize form handler
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Itinerary generator loaded');
+    
     const form = document.getElementById('itineraryGeneratorForm');
     
     if (form) {
+        console.log('Form found, attaching handler');
+        
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('Form submitted!');
 
             // Get form values
             const duration = document.getElementById('gen-duration').value;
@@ -329,6 +370,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const budget = document.getElementById('gen-budget').value;
             const travelers = document.getElementById('gen-travelers').value;
             const season = document.getElementById('gen-season').value;
+
+            console.log('Form values:', { duration, interest, budget, travelers, season });
 
             // Validate
             if (!duration || !interest || !budget || !season) {
@@ -339,15 +382,27 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show loading
             showLoading();
 
-            // Generate itinerary with delay for effect
+            // Generate itinerary with small delay for UX
             setTimeout(() => {
-                const itinerary = generateItinerary(duration, interest, budget, travelers, season);
-                const html = renderItinerary(itinerary);
-                document.getElementById('itineraryOutput').innerHTML = html;
-                
-                // Scroll to output
-                document.getElementById('itineraryOutput').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                try {
+                    const itinerary = generateItinerary(duration, interest, budget, travelers, season);
+                    const html = renderItinerary(itinerary);
+                    document.getElementById('itineraryOutput').innerHTML = html;
+                    
+                    // Scroll to output
+                    document.getElementById('itineraryOutput').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                    
+                    console.log('Itinerary rendered successfully');
+                } catch (error) {
+                    console.error('Error generating itinerary:', error);
+                    alert('Sorry, there was an error generating your itinerary. Please try again.');
+                }
             }, 1500);
         });
+    } else {
+        console.error('Form not found!');
     }
 });
